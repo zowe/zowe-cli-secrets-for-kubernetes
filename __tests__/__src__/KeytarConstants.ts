@@ -82,4 +82,4 @@ export const CREDENTIALS_WITH_BREAKING_CHANGES = {
     }
 };
 
-export const SIGNATURE: string = "managed by @zowe/secure-credential-store-for-zowe-cli";
+export const SIGNATURE: string = "managed by @zowe/secrets-for-kubernetes-for-zowe-cli";
