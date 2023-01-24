@@ -58,7 +58,7 @@
     "@types/jest": "^24.0.5",
     "@types/js-yaml": "^3.11.2",
     "@types/jsonfile": "^4.0.1",
-    "@types/node": "^8.10.59",
+    "@types/node": "^14.18.28",
     "@types/uuid": "^3.4.6",
     "@types/yargs": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
@@ -85,6 +85,7 @@
     "js-yaml": "^3.13.1",
     "jsonfile": "^5.0.0",
     "madge": "^5.0.1",
+    "rimraf": "^4.1.2",
     "shebang-regex": "^2.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^3.2.0",
@@ -93,7 +94,7 @@
     "uuid": "^3.3.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=14.0.0"
   },
   "jest": {
     "setupFilesAfterEnv": [
