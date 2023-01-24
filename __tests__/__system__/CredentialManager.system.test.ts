@@ -9,7 +9,7 @@
  *
  */
 
-import { ITestEnvironment, TestEnvironment, runCliScript } from "@zowe/cli-test-utils";
+import { ITestEnvironment, TestEnvironment, runCliScript, stripProfileDeprecationMessages } from "@zowe/cli-test-utils";
 import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertiesSchema";
 
 import * as C from "../__src__/KeytarConstants";
@@ -34,7 +34,7 @@ describe("Credential Manager Plugin", () => {
     it("should store credentials securely", () => {
         const response = runCliScript(__dirname + "/__scripts__/cm_create.sh", TEST_ENV);
         expect(response.status).toBe(0);
-        expect(response.stderr.toString()).toEqual("");
+        expect(stripProfileDeprecationMessages(response.stderr)).toEqual("");
         expect(response.stdout.toString()).toContain(C.SIGNATURE);
     });
 });
