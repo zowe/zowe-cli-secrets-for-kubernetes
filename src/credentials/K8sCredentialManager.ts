@@ -239,4 +239,4 @@ export = class K8sCredentialManager extends AbstractCredentialManager {
     private getSecretName(account: string): string {
         return `${account}-${this.kubeConfig.uid}`.replace(/_/g,'-').toLowerCase();
     }
-}
+};
