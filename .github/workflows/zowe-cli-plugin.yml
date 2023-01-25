@@ -55,11 +55,12 @@ jobs:
       run: npm run test:unit
 
     - name: Start Minikube
+      id: minikube
       if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
       uses: medyagh/setup-minikube@latest
 
     - name: Create System Test Properties
-      if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
+      if: ${{ always() && steps.minikube.outcome == 'success' }}
       run: >
         echo "zosmf:
           user: ibmuser
@@ -69,7 +70,7 @@ jobs:
           " > __tests__/__resources__/properties/custom_properties.yaml
 
     - name: System Tests
-      if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
+      if: ${{ always() && steps.minikube.outcome == 'success' }}
       run: npm run test:system
 
     - name: Archive Results
