@@ -18,11 +18,11 @@ export class Constants {
     // When adding, removing or modifying the alternative services, please double check the loadCredentials function
     public static readonly PLUGIN_ALTERNATIVE_SERVICES = ["@brightside/core", "@zowe/cli"];
 
-    public static readonly PLUGIN_SUMMARY = "Work with securely stored credentials";
-    public static readonly PLUGIN_DESCRIPTION = "Store credentials securely in profiles by encrypting them";
-    public static readonly DISPLAY_NAME = "Secure Credential Store Plugin";
-    public static readonly ALIAS = "scs";
-    public static readonly NAME = "secure-credential-store";
+    public static readonly PLUGIN_SUMMARY = "Work with secrets stored in kubernetes";
+    public static readonly PLUGIN_DESCRIPTION = "Store credentials as secrets in a kubernetes cluster";
+    public static readonly DISPLAY_NAME = "Kubernetes secrets plugin";
+    public static readonly ALIAS = "k8s";
+    public static readonly NAME = "kubernetes-secrets-plugin";
     public static readonly UPDATE_CMD_NAME = "update";
     public static readonly UPDATE_CMD_DESCRIPTION = "Updates all plain text profiles to be securely stored";
     public static readonly UPDATE_CMD_ALIAS = ["u"];

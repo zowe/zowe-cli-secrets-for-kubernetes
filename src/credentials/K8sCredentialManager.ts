@@ -19,7 +19,7 @@ type KubeConfig = {
     uid: string;
 };
 
-export = class K8sCredentialManager extends AbstractCredentialManager {
+class K8sCredentialManager extends AbstractCredentialManager {
     public static readonly SVC_NAME = "k8s";
     private allServices: string[];
     private kubeConfig: KubeConfig;
@@ -239,4 +239,6 @@ export = class K8sCredentialManager extends AbstractCredentialManager {
     private getSecretName(account: string): string {
         return `${account}-${this.kubeConfig.uid}`.replace(/_/g,'-').toLowerCase();
     }
-};
+}
+
+export = K8sCredentialManager;
