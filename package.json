@@ -1,6 +1,6 @@
 {
   "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
-  "version": "4.1.10",
+  "version": "1.0.0",
   "description": "Secure credential storage plugin for Zowe CLI",
   "author": "Broadcom",
   "license": "EPL-2.0",
@@ -15,8 +15,7 @@
   },
   "files": [
     "lib",
-    "prebuilds",
-    "scripts/preinstall.js"
+    "scripts"
   ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -63,8 +62,9 @@
     "@types/yargs": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
-    "@zowe/cli": "^7.0.0",
-    "@zowe/imperative": "^5.0.0",
+    "@zowe/cli": "^7.7.0",
+    "@zowe/cli-test-utils": "^7.10.1",
+    "@zowe/imperative": "^5.6.0",
     "coveralls": "^3.0.7",
     "env-cmd": "^8.0.2",
     "eslint": "^7.32.0",
