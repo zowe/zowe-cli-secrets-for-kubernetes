@@ -1,6 +1,6 @@
 {
   "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
-  "version": "4.1.10",
+  "version": "1.0.0",
   "description": "Kubernetes secrets plugin for Zowe CLI",
   "author": "Broadcom",
   "license": "EPL-2.0",
@@ -15,8 +15,7 @@
   },
   "files": [
     "lib",
-    "prebuilds",
-    "scripts/preinstall.js"
+    "scripts"
   ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

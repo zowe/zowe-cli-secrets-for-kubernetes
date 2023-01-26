@@ -40,6 +40,10 @@ jobs:
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
 
+    - name: Update NPM
+      if: ${{ matrix.node-version == '14.x' }}
+      run: npm install -g npm@7
+
     - name: Install Dependencies
       run: npm ci
 
@@ -57,13 +61,15 @@ jobs:
       if: ${{ always() && steps.build.outcome == 'success' }}
       run: npm run test:unit
 
-    - name: Start Minikube
-      id: minikube
+    - name: Start K3s Cluster
+      id: k3s
       if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
-      uses: medyagh/setup-minikube@latest
+      uses: debianmaster/actions-k3s@master
+      with:
+        version: latest
 
     - name: Create System Test Properties
-      if: ${{ always() && steps.minikube.outcome == 'success' }}
+      if: ${{ always() && steps.k3s.outcome == 'success' }}
       run: >
         echo "zosmf:
           user: ibmuser
@@ -73,7 +79,7 @@ jobs:
           " > __tests__/__resources__/properties/custom_properties.yaml
 
     - name: System Tests
-      if: ${{ always() && steps.minikube.outcome == 'success' }}
+      if: ${{ always() && steps.k3s.outcome == 'success' }}
       run: npm run test:system
 
     - name: Archive Results

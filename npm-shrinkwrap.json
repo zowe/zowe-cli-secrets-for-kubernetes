@@ -1,12 +1,12 @@
 {
   "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
-  "version": "4.1.10",
+  "version": "1.0.0",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
-      "version": "4.1.10",
+      "version": "1.0.0",
       "hasInstallScript": true,
       "license": "EPL-2.0",
       "dependencies": {
