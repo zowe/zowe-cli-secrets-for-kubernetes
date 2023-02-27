@@ -14,7 +14,7 @@ import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertie
 
 import * as C from "../__src__/KeytarConstants";
 
-describe("Credential Manager Plugin", () => {
+describe("Credential Manager Plugin for v1 profiles", () => {
     let TEST_ENV: ITestEnvironment<ITestPropertiesSchema>;
 
     // Create the unique test environment
@@ -32,9 +32,35 @@ describe("Credential Manager Plugin", () => {
     });
 
     it("should store credentials securely", () => {
-        const response = runCliScript(__dirname + "/__scripts__/cm_create.sh", TEST_ENV);
+        const response = runCliScript(__dirname + "/__scripts__/cm_create_v1.sh", TEST_ENV);
         expect(response.status).toBe(0);
         expect(stripProfileDeprecationMessages(response.stderr)).toEqual("");
         expect(response.stdout.toString()).toContain(C.SIGNATURE);
+    });
+});
+
+describe("Credential manager plugin for v2 profiles", () => {
+    let TEST_ENV: ITestEnvironment<ITestPropertiesSchema>;
+
+    // Create the unique test environment
+    beforeAll(async () => {
+        TEST_ENV = await TestEnvironment.setUp({
+            installPlugin: true,
+            tempProfileTypes: ["zosmf"],
+            testName: "cm_tests",
+        });
+    });
+
+    afterAll(async () => {
+        await TestEnvironment.cleanUp(TEST_ENV);
+    });
+
+    it("should store credentials securely", () => {
+        const response = runCliScript(__dirname + "/__scripts__/cm_create_v2.sh", TEST_ENV);
+        const responseData = JSON.parse(response.stdout.toString()).data.base.secure;
+
+        expect(response.status).toBe(0);
+        expect(response.stderr.toString()).toContain("");
+        expect(responseData).toEqual(["user", "password"]);
     });
 });
