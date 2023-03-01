@@ -57,10 +57,11 @@ describe("Credential manager plugin for v2 profiles", () => {
 
     it("should store credentials securely", () => {
         const response = runCliScript(__dirname + "/__scripts__/cm_create_v2.sh", TEST_ENV);
-        const responseData = JSON.parse(response.stdout.toString()).data.base.secure;
-
         expect(response.status).toBe(0);
         expect(response.stderr.toString()).toContain("");
-        expect(responseData).toEqual(["user", "password"]);
+        expect(response.stdout.toString()).not.toContain("USER");
+        expect(response.stdout.toString()).not.toContain("PLAINTEXT");
+        expect(response.stdout.toString()).toContain(`"user": "(secure value)"`);
+        expect(response.stdout.toString()).toContain(`"password": "(secure value)"`);
     });
 });
