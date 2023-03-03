@@ -14,11 +14,8 @@
     "removeComments": false,
     "pretty": true,
     "sourceMap": true,
-    "newLine": "lf"
+    "newLine": "lf",
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
     "lib",
     "node_modules",
@@ -29,4 +26,3 @@
     "**/*.test.ts"
   ]
 }
-

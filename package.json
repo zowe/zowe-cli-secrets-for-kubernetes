@@ -1,149 +1,63 @@
 {
-  "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
+  "name": "kubernetes-secrets-plugin",
   "version": "1.0.0",
-  "description": "Kubernetes secrets plugin for Zowe CLI",
-  "author": "Broadcom",
-  "license": "EPL-2.0",
-  "repository": "https://github.com/zowe/zowe-cli-scs-plugin/",
-  "keywords": [
-    "credential manager",
-    "secure store",
-    "password"
-  ],
-  "publishConfig": {
-    "registry": "https://zowe.jfrog.io/zowe/api/npm/npm-local-release/"
-  },
-  "files": [
-    "lib",
-    "scripts"
-  ],
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
-  "imperative": {
-    "configurationModule": "lib/imperative/configuration.js"
-  },
+  "private": true,
   "scripts": {
-    "clean": "rimraf lib",
-    "checkTestsCompile": "echo \"Checking that test source compiles...\" && tsc --project __tests__/test-tsconfig.json --noEmit ",
-    "circularDependencyCheck": "madge -c lib",
-    "lint": "eslint \"src/**/*.ts\" \"**/__tests__/**/*.ts\"",
-    "lint:src": "eslint \"src/**/*.ts\" --ignore-pattern \"**/__tests__/**/*.ts\"",
-    "lint:tests": "eslint \"**/__tests__/**/*.ts\"",
-    "prebuild": "npm run clean && npm run lint && echo Using TypeScript && tsc --version",
-    "build": "tsc --pretty && npm run checkTestsCompile && npm run circularDependencyCheck",
-    "prepublishOnly": "npm run build && bash ./scripts/bundleKeytar.sh",
-    "test": "npm run test:unit",
-    "test:unit": "env-cmd __tests__/__resources__/env/unit.env jest --coverage --testPathIgnorePatterns \".*/__system__/.*\" ",
-    "test:system": "env-cmd __tests__/__resources__/env/system.env jest .*/__system__/.* --coverage false --runInBand",
-    "coverage": "jest --coverage",
-    "watch": "tsc --pretty --watch",
-    "watch:test": "jest --watch",
-    "installPlugin": "npm install && npm run clean && npm run build && zowe plugins install .",
-    "postinstall": "node scripts/postinstall.js && echo \"The kubernetes secrets plugin has been successfully installed. The CLI will now use kubernetes secrets for storing credentials on your logged in cluster. CLI Profiles that you have created will need to be updated because their credentials are stored in plain text and not accessible from the credential manager.\" 1>&2",
-    "preuninstall": "node scripts/preuninstall.js",
-    "postuninstall": "echo \"CLI Profiles that you have created will need to be recreated because their credentials are stored in the credential manager that has been uninstalled. Refer to the available options in the help text to create a new profile 'zowe profiles create zosmf-profile -h'.\" 1>&2",
-    "typedoc": "typedoc --out ./docs/typedoc/ ./src/ --disableOutputCheck",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "lintErrors": "npm run lintErrors --workspaces",
     "prepare": "husky install"
   },
-  "dependencies": {
-    "@kubernetes/client-node": "0.18.1"
+  "workspaces": [
+    "./packages/*"
+  ],
+  "engines": {
+    "npm": ">=9.4.2",
+    "node": ">=16.19.0"
   },
   "peerDependencies": {
     "@zowe/cli": "^7.0.0",
     "@zowe/imperative": "^5.0.0"
   },
   "devDependencies": {
-    "@types/fs-extra": "^5.0.4",
-    "@types/jest": "^24.0.5",
-    "@types/js-yaml": "^3.11.2",
-    "@types/jsonfile": "^4.0.1",
-    "@types/node": "^14.18.28",
-    "@types/uuid": "^3.3.2",
-    "@types/yargs": "^8.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "@zowe/cli": "^7.10.4",
-    "@zowe/cli-test-utils": "^7.10.1",
-    "@zowe/imperative": "^5.8.3",
-    "coveralls": "^3.0.7",
-    "env-cmd": "^8.0.2",
-    "eslint": "^8.22.0",
-    "eslint-plugin-jest": "^26.8.0",
+    "@types/fs-extra": "^11.0.1",
+    "@types/jest": "^29.4.0",
+    "@types/js-yaml": "^4.0.5",
+    "@types/jsonfile": "^6.1.1",
+    "@types/node": "^18.14.5",
+    "@types/uuid": "^9.0.1",
+    "@types/yargs": "^17.0.22",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "@zowe/cli": "^7.11.0",
+    "@zowe/cli-test-utils": "^7.11.0",
+    "@zowe/imperative": "^5.9.1",
+    "coveralls": "^3.1.1",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.35.0",
+    "eslint-plugin-jest": "^27.2.1",
     "eslint-plugin-license-header": "^0.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "fs-extra": "^5.0.0",
-    "glob": "^6.0.0",
-    "husky": "^7.0.1",
-    "jest": "^29.4.0",
-    "jest-cli": "^29.4.0",
-    "jest-environment-node": "^29.4.0",
+    "fs-extra": "^11.1.0",
+    "glob": "^9.2.1",
+    "husky": "^8.0.3",
+    "jest": "^29.4.3",
+    "jest-cli": "^29.4.3",
+    "jest-environment-node": "^29.4.3",
     "jest-environment-node-debug": "^2.0.0",
-    "jest-html-reporter": "^3.6.0",
-    "jest-junit": "^6.3.0",
-    "jest-stare": "^2.2.0",
-    "js-yaml": "^3.13.1",
-    "jsonfile": "^5.0.0",
-    "madge": "^4.0.1",
-    "rimraf": "^4.1.2",
-    "shebang-regex": "^2.0.0",
+    "jest-html-reporter": "^3.7.0",
+    "jest-junit": "^15.0.0",
+    "jest-stare": "^2.5.0",
+    "js-yaml": "^4.1.0",
+    "jsonfile": "^6.1.0",
+    "madge": "^6.0.0",
+    "rimraf": "^4.2.0",
+    "shebang-regex": "^4.0.0",
     "ts-jest": "^29.0.5",
-    "ts-node": "^7.0.1",
-    "typedoc": "^0.23.10",
-    "typescript": "^4.0.0",
-    "uuid": "^3.3.2"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "jest": {
-    "setupFilesAfterEnv": [
-      "./__tests__/setUpJest.ts"
-    ],
-    "modulePathIgnorePatterns": [
-      "__tests__/__snapshots__/"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/__results__"
-    ],
-    "transform": {
-      ".(ts)": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ],
-    "testEnvironment": "node",
-    "collectCoverageFrom": [
-      "src/**/*.ts",
-      "!**/__tests__/**",
-      "!**/index.ts",
-      "!**/main.ts"
-    ],
-    "collectCoverage": false,
-    "reporters": [
-      "default",
-      "jest-junit",
-      "jest-stare",
-      "jest-html-reporter"
-    ],
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "cobertura"
-    ],
-    "coverageDirectory": "<rootDir>/__tests__/__results__/unit/coverage"
-  },
-  "jest-stare": {
-    "resultDir": "__tests__/__results__/jest-stare"
-  },
-  "jest-junit": {
-    "output": "__tests__/__results__/junit.xml"
-  },
-  "jest-html-reporter": {
-    "pageTitle": "Kubernetes secrets Plugin for Zowe CLI Test Results",
-    "outputPath": "__tests__/__results__/results.html",
-    "includeFailureMsg": true
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.26",
+    "typescript": "^4.9.5",
+    "uuid": "^9.0.0"
   }
 }

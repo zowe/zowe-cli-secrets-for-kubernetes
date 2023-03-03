@@ -1,0 +1,17 @@
+{
+  "name": "@zowe/secrets-for-kubernetes-for-zowe-explorer",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc --pretty",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "lib/index.js",
+  "keywords": [
+    "credential manager",
+    "secure store",
+    "password"
+  ],
+  "author": "IBM",
+  "license": "EPL-2.0",
+  "dependencies": {}
+}
