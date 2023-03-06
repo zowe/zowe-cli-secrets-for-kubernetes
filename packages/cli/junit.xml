@@ -1,49 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Unit Tests" tests="20" failures="0" errors="0" time="3.591">
-  <testsuite name="Unit Tests" errors="0" failures="0" skipped="0" timestamp="2023-03-03T19:27:57" time="1.846" tests="1">
-    <testcase classname="Unit.Imperative config" name="should match the snapshot" time="0.007">
+<testsuites name="System Tests" tests="2" failures="0" errors="0" time="37.431">
+  <testsuite name="System Tests" errors="0" failures="0" skipped="0" timestamp="2023-03-06T14:50:00" time="37.327" tests="2">
+    <testcase classname="System.Credential Manager Plugin for v1 profiles" name="should store credentials securely" time="7.096">
     </testcase>
-  </testsuite>
-  <testsuite name="Unit Tests" errors="0" failures="0" skipped="0" timestamp="2023-03-03T19:27:57" time="1.972" tests="1">
-    <testcase classname="Unit.HealthCheckHandler Unit Tests" name="should return true when function is called" time="0.002">
-    </testcase>
-  </testsuite>
-  <testsuite name="Unit Tests" errors="0" failures="0" skipped="0" timestamp="2023-03-03T19:27:57" time="3.136" tests="18">
-    <testcase classname="Unit.K8sCredentialManager" name="Constructs Properly" time="0.004">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; initialize" name="should throw an authentication error if user has not logged into kubernetes with error 403" time="0.032">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; initialize" name="should throw an authentication error if user has not logged into kubernetes with error 401" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; initialize" name="should properly check if namespace exists in kubernetes cluster and find it" time="0.013">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; initialize" name="Should throw an error if the namespace defined does not exist in cluster" time="0.001">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; setupKubeConfig" name="should throw an error if the current context is not found" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; setupKubeConfig" name="should throw an error if the user was not found" time="0.007">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; setupKubeConfig" name="should throw an error if namespace was not found through current context object name or namespace property" time="0.003">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; setupKubeConfig" name="should create a uid associated with the kubeconfig email" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; setupKubeConfig" name="should throw an error if KubeConfig was not able to be accessed from Kubernetes" time="0.003">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; loadCredentials" name="should return secret if credentials exists in kubernetes" time="0.01">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; loadCredentials" name="should throw an error when required credential fails to load" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; loadCredentials" name="should not throw an error when optional credential fails to load" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; saveCredentials" name="should save a kubernetes secret successfully if credentials are not found" time="0.001">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; saveCredentials" name="should save a kubernetes secret successfully if credentials are found and deleted" time="0.002">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; saveCredentials" name="should throw an error if a secret was not able to be stored" time="0.001">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; deleteCredentials" name="should delete a kubernetes secret successfully if the secret exists" time="0.001">
-    </testcase>
-    <testcase classname="Unit.K8sCredentialManager &gt; instance methods &gt; deleteCredentials" name="should fail to delete a kubernetes secret if secret is not found and throw an error" time="0.001">
+    <testcase classname="System.Credential manager plugin for v2 profiles" name="should store credentials securely" time="10.639">
     </testcase>
   </testsuite>
 </testsuites>
