@@ -15,8 +15,8 @@
 #  Connection details/credentials for z/OSMF                              #
 #-------------------------------------------------------------------------#
 zosmf:
-  user: rflores
-  pass: rudy2021
-  host: tvt4002.svl.ibm.com
+  user: test
+  pass: test123
+  host: sample.com
   port: 443
   rejectUnauthorized: false
