@@ -56,7 +56,6 @@ describe("K8sCredentialManager", () => {
     it("Constructs Properly", () => {
         const service = "imperative";
         const manager = new K8sCredentialManager(service);
-        const privateManager = manager as any;
         expect((manager as any).service).toEqual(service);
     });
 

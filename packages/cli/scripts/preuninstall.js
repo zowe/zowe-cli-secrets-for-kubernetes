@@ -7,6 +7,6 @@ let imperativeSettings = {
 };
 if (fs.existsSync(settingsJson)) {
     imperativeSettings = JSON.parse(fs.readFileSync(settingsJson, "utf-8"));
+    imperativeSettings.overrides.CredentialManager = "@zowe/cli";
+    fs.writeFileSync(settingsJson, JSON.stringify(imperativeSettings, null, 2));
 }
-imperativeSettings.overrides.CredentialManager = "@zowe/cli";
-fs.writeFileSync(settingsJson, JSON.stringify(imperativeSettings, null, 2));
