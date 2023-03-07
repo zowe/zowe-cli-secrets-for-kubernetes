@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="System Tests" tests="2" failures="0" errors="0" time="37.431">
-  <testsuite name="System Tests" errors="0" failures="0" skipped="0" timestamp="2023-03-06T14:50:00" time="37.327" tests="2">
-    <testcase classname="System.Credential Manager Plugin for v1 profiles" name="should store credentials securely" time="7.096">
-    </testcase>
-    <testcase classname="System.Credential manager plugin for v2 profiles" name="should store credentials securely" time="10.639">
-    </testcase>
-  </testsuite>
-</testsuites>

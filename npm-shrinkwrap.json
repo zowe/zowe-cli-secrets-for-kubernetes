@@ -51,8 +51,8 @@
         "uuid": "^9.0.0"
       },
       "engines": {
-        "node": ">=16.19.0",
-        "npm": ">=9.4.2"
+        "node": ">=14.17.3",
+        "npm": ">=7.0.7"
       },
       "peerDependencies": {
         "@zowe/cli": "^7.0.0",
