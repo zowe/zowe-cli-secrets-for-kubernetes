@@ -76,7 +76,7 @@ jobs:
           pass: plaintext
           host: localhost
           port: 12345
-          " > __tests__/__resources__/properties/custom_properties.yaml
+          " > packages/cli/__tests__/__resources__/properties/custom_properties.yaml
 
     - name: System Tests
       if: ${{ always() && steps.k3s.outcome == 'success' }}

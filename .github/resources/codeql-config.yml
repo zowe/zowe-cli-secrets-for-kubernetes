@@ -4,6 +4,6 @@ queries:
   - uses: security-and-quality
 
 paths:
-  - src
+  - packages
 paths-ignore:
   - node_modules

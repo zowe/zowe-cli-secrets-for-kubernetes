@@ -56,7 +56,6 @@ describe("K8sCredentialManager", () => {
     it("Constructs Properly", () => {
         const service = "imperative";
         const manager = new K8sCredentialManager(service);
-        const privateManager = manager as any;
         expect((manager as any).service).toEqual(service);
     });
 
@@ -121,7 +120,7 @@ describe("K8sCredentialManager", () => {
                         getCurrentUser: jest.fn(() => "userName")
                     };
                 });
-                expect(() => privateManager.setupKubeConfig()).toThrowError("Failed to access Kubernetes, login into your cluster and try again.");
+                expect(() => privateManager.setupKubeConfig()).toThrow("Failed to access Kubernetes, login into your cluster and try again.");
             });
             it("should throw an error if the user was not found", () => {
                 const mockKubeConfig = jest.spyOn(K8s, "KubeConfig");
@@ -137,7 +136,7 @@ describe("K8sCredentialManager", () => {
                         getCurrentUser: jest.fn(() => null)
                     };
                 });
-                expect(() => privateManager.setupKubeConfig()).toThrowError("Failed to access Kubernetes, login into your cluster and try again.");
+                expect(() => privateManager.setupKubeConfig()).toThrow("Failed to access Kubernetes, login into your cluster and try again.");
             });
             it("should throw an error if namespace was not found through current context object name or namespace property", () => {
                 const mockKubeConfig = jest.spyOn(K8s, "KubeConfig");
@@ -152,7 +151,7 @@ describe("K8sCredentialManager", () => {
                         getCurrentUser: jest.fn(() => "test")
                     };
                 });
-                expect(() => privateManager.setupKubeConfig()).toThrowError("Failed to access Kubernetes, login into your cluster and try again.");
+                expect(() => privateManager.setupKubeConfig()).toThrow("Failed to access Kubernetes, login into your cluster and try again.");
             });
             it("should create a uid associated with the kubeconfig email", async () => {
                 const mockKubeConfig = jest.spyOn(K8s, "KubeConfig");
