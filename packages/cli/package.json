@@ -1,5 +1,5 @@
 {
-  "name": "zowe-secrets-for-kubernetes-for-zowe-cli",
+  "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
   "version": "1.0.0",
   "description": "Kubernetes secrets plugin for Zowe CLI",
   "author": "Broadcom",

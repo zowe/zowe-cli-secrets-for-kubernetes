@@ -1,9 +1,9 @@
 {
-  "name": "zowe-secrets-for-kubernetes",
+  "name": "secrets-for-kubernetes",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "turbo build",
     "package": "npm run package --workspaces",
     "test": "npm run test --workspaces",
     "test:system": "npm run test:system --workspaces",
@@ -20,7 +20,7 @@
     "npm": ">=8.19.3",
     "node": ">=16.19.0"
   },
-  "packageManager": "npm@8.19.3>=",
+  "packageManager": "npm@8.19.3",
   "peerDependencies": {
     "@zowe/cli": "^7.0.0",
     "@zowe/imperative": "^5.0.0"

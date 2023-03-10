@@ -1,12 +1,12 @@
 {
-  "name": "zowe-secrets-for-kubernetes-for-zowe-explorer",
+  "name": "zowe-secrets-for-kubernetes",
   "version": "1.0.0",
   "scripts": {
     "build": "tsc --pretty",
     "test": "echo \"VS Code package: No test specified\" && exit 0",
     "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
     "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
-    "package": "vsce package --allow-star-activation --no-yarn && node ../../scripts/mv-pack.js kubernetes-secrets-for-zowe-explorer vsix"
+    "package": "vsce package --allow-star-activation --no-yarn && node ../../scripts/mv-pack.js Zowe.secrets-for-kubernetes vsix"
   },
   "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
   "main": "lib/extension.js",

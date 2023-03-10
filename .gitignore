@@ -6,10 +6,13 @@ npm-debug.log
 lib
 lib_test
 .idea
-package-lock.json
 results/
 __results__/
 __tests__/__results__/
 packages/cli/__tests__/__resources__/properties/custom_properties.yaml
 docs/typedoc
 .turbo
+build/**
+dist/**
+.next/**
+dist
