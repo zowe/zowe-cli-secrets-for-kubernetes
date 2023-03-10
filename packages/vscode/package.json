@@ -1,13 +1,16 @@
 {
-  "name": "@zowe/secrets-for-kubernetes-for-zowe-explorer",
+  "name": "zowe-secrets-for-kubernetes-for-zowe-explorer",
   "version": "1.0.0",
   "scripts": {
     "build": "tsc --pretty",
     "test": "echo \"VS Code package: No test specified\" && exit 0",
     "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
-    "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0"
+    "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
+    "package": "vsce package --allow-star-activation --no-yarn && node ../../scripts/mv-pack.js kubernetes-secrets-for-zowe-explorer vsix"
   },
-  "main": "lib/index.js",
+  "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
+  "main": "lib/extension.js",
+  "typings": "lib/extension.d.ts",
   "keywords": [
     "credential manager",
     "secure store",
@@ -15,5 +18,14 @@
   ],
   "author": "IBM",
   "license": "EPL-2.0",
-  "dependencies": {}
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "dependencies": {
+    "@types/vscode": "^1.76.0",
+    "@vscode/vsce": "^2.18.0"
+  }
 }

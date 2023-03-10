@@ -1,9 +1,10 @@
 {
-  "name": "kubernetes-secrets-plugin",
+  "name": "zowe-secrets-for-kubernetes",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "npm run build --workspaces",
+    "package": "npm run package --workspaces",
     "test": "npm run test --workspaces",
     "test:system": "npm run test:system --workspaces",
     "test:unit": "npm run test:unit --workspaces",
@@ -11,12 +12,13 @@
     "lintErrors": "npm run lintErrors --workspaces",
     "prepare": "husky install"
   },
+  "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
   "workspaces": [
     "./packages/*"
   ],
   "engines": {
-    "npm": ">=7.0.7",
-    "node": ">=14.17.3"
+    "npm": ">=8.19.3",
+    "node": ">=16.19.0"
   },
   "peerDependencies": {
     "@zowe/cli": "^7.0.0",
@@ -27,7 +29,6 @@
     "@types/jest": "^29.4.0",
     "@types/js-yaml": "^4.0.5",
     "@types/jsonfile": "^6.1.1",
-    "@types/node": "^18.14.5",
     "@types/uuid": "^9.0.1",
     "@types/yargs": "^17.0.22",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
@@ -35,6 +36,7 @@
     "@zowe/cli": "^7.11.0",
     "@zowe/cli-test-utils": "^7.11.0",
     "@zowe/imperative": "^5.9.1",
+    "chalk": "^4.1.2",
     "coveralls": "^3.1.1",
     "env-cmd": "^10.1.0",
     "eslint": "^8.35.0",
@@ -58,6 +60,7 @@
     "shebang-regex": "^4.0.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
+    "turbo": "^1.8.3",
     "typedoc": "^0.23.26",
     "typescript": "^4.9.5",
     "uuid": "^9.0.0"
