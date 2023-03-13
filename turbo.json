@@ -5,6 +5,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "lib/**"]
     },
+    "dev": {
+      "dependsOn": ["build"]
+    },
     "test": {
       "dependsOn": ["build"],
       "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
