@@ -12,6 +12,5 @@ packages/cli/__tests__/__resources__/properties/custom_properties.yaml
 docs/typedoc
 .turbo
 build/**
-dist/**
 .next/**
-dist
+packages/**/dist/**
