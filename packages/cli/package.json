@@ -4,7 +4,6 @@
   "description": "Kubernetes secrets plugin for Zowe CLI",
   "author": "Broadcom",
   "license": "EPL-2.0",
-  "repository": "https://github.com/zowe/zowe-cli-scs-plugin/",
   "keywords": [
     "credential manager",
     "secure store",
@@ -13,6 +12,7 @@
   "publishConfig": {
     "registry": "https://zowe.jfrog.io/zowe/api/npm/npm-local-release/"
   },
+  "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
   "files": [
     "lib",
     "scripts"
@@ -43,12 +43,12 @@
     "test:cleanResults": "rimraf __tests__/__results__",
     "test:unit": "env-cmd -f __tests__/__resources__/env/unit.env jest --coverage --testPathIgnorePatterns \".*/__system__/.*\" ",
     "test:system": "env-cmd -f __tests__/__resources__/env/system.env jest .*/__system__/.* --coverage false --runInBand",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "package": "npm run clean && node ../../scripts/updateLicenses.js && npm run build && npm pack --pack-destination ../../dist"
   },
   "dependencies": {
     "@kubernetes/client-node": "0.18.1"
   },
-
   "jest": {
     "setupFilesAfterEnv": [
       "./__tests__/setUpJest.ts"
