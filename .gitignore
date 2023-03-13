@@ -13,4 +13,4 @@ docs/typedoc
 .turbo
 build/**
 .next/**
-packages/**/dist/**
+dist/
