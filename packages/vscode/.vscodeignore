@@ -22,7 +22,6 @@ packages.json
 .travis.yml
 CONTRIBUTING.md
 Jenkinsfile.old
-LICENSE
 LICENSE_HEADER
 package-lock.json
 package.json
