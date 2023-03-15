@@ -1,0 +1,31 @@
+# Ignore all files and directories in the parent directory
+../../
+../
+
+# Ignore some specific files and directories in the current directory
+.vscode/
+node_modules/
+imgs/
+.turbo/
+src/
+tsconfig.json
+packages.json
+
+# Ignore some specific files and directories in the parent directory
+.git
+.editorconfig
+.eslintrc.js
+.github/
+.gitignore
+.husky/
+.npmrc
+.travis.yml
+CONTRIBUTING.md
+Jenkinsfile.old
+LICENSE_HEADER
+package-lock.json
+package.json
+README.md
+release.config.js
+scripts/**
+turbo.json
