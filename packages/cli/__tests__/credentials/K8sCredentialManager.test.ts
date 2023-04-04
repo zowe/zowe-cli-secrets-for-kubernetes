@@ -9,7 +9,7 @@
  *
  */
 
-import { K8sCredentialManager } from "../../src/credentials/K8sCredentialManager";
+const K8sCredentialManager = require("../../src/credentials/K8sCredentialManager");
 import { ImperativeError } from "@zowe/imperative";
 jest.mock("@kubernetes/client-node");
 const K8s = require("@kubernetes/client-node");
@@ -65,7 +65,7 @@ describe("K8sCredentialManager", () => {
 
     describe("instance methods", () => {
         const service = K8sCredentialManager.SVC_NAME;
-        let manager: K8sCredentialManager;
+        let manager: typeof K8sCredentialManager;
         let privateManager: any;
         const values = {
             account: "test",
