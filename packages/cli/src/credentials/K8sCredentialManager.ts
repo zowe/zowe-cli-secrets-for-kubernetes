@@ -9,7 +9,12 @@
  *
  */
 
-import { AbstractCredentialManager, ImperativeError, Logger, SecureCredential } from "@zowe/imperative";
+import {
+    AbstractCredentialManager,
+    ImperativeError,
+    Logger,
+    SecureCredential,
+} from "@zowe/imperative";
 
 // Has to be required instead of imported since it causes import issues
 const k8s = require("@kubernetes/client-node");
@@ -19,17 +24,24 @@ type KubeConfig = {
     uid: string;
 };
 
-class K8sCredentialManager extends AbstractCredentialManager {
+export class K8sCredentialManager extends AbstractCredentialManager {
     public static readonly SVC_NAME = "k8s";
     private allServices: string[];
     private kubeConfig: KubeConfig;
     private kc: any;
 
-    constructor(service: string, displayName: string = "K8s Credential Manager") {
+    constructor(
+        service: string,
+        displayName: string = "K8s Credential Manager"
+    ) {
         super(service, displayName);
         this.allServices = [service || K8sCredentialManager.SVC_NAME];
         if (this.defaultService === K8sCredentialManager.SVC_NAME) {
-            this.allServices.push("@zowe/cli", "Zowe-Plugin", "Broadcom-Plugin");
+            this.allServices.push(
+                "@zowe/cli",
+                "Zowe-Plugin",
+                "Broadcom-Plugin"
+            );
         }
         this.kc = this.setupKubeConfig();
     }
@@ -45,15 +57,22 @@ class K8sCredentialManager extends AbstractCredentialManager {
     public async initialize(): Promise<void> {
         try {
             await this.kc.readNamespace(this.kubeConfig.namespace, "true");
-            Logger.getImperativeLogger().debug(`Namespace ${this.kubeConfig.namespace} was found`);
+            Logger.getImperativeLogger().debug(
+                `Namespace ${this.kubeConfig.namespace} was found`
+            );
         } catch (err) {
             const authenticationErrorCode = 403;
             const unauthorizedErrorCode = 401;
-            if(err.statusCode === authenticationErrorCode || err.statusCode === unauthorizedErrorCode) {
-                throw new ImperativeError({ msg: "Authentication error when trying to access kubernetes cluster. Login to cluster and try again." });
+            if (
+                err.statusCode === authenticationErrorCode ||
+                err.statusCode === unauthorizedErrorCode
+            ) {
+                throw new ImperativeError({
+                    msg: "Authentication error when trying to access kubernetes cluster. Login to cluster and try again.",
+                });
             }
             throw new ImperativeError({
-                msg: `Namespace ${this.kubeConfig.namespace} does not exist`
+                msg: `Namespace ${this.kubeConfig.namespace} does not exist`,
             });
         }
     }
@@ -63,8 +82,13 @@ class K8sCredentialManager extends AbstractCredentialManager {
      * @param account The string account name.
      * @returns A promise for the credential string.
      */
-    protected async loadCredentials(account: string, optional?: boolean): Promise<SecureCredential> {
-        Logger.getImperativeLogger().debug(`Loading k8s secret ${this.getSecretName(account)}`);
+    protected async loadCredentials(
+        account: string,
+        optional?: boolean
+    ): Promise<SecureCredential> {
+        Logger.getImperativeLogger().debug(
+            `Loading k8s secret ${this.getSecretName(account)}`
+        );
         let secureValue: any = null;
         try {
             const response: any = await this.readNamespacedSecret(account);
@@ -76,14 +100,19 @@ class K8sCredentialManager extends AbstractCredentialManager {
         if (secureValue == null && !optional) {
             throw new ImperativeError({
                 msg: "Unable to load credentials.",
-                additionalDetails: this.getMissingEntryMessage(account)
+                additionalDetails: this.getMissingEntryMessage(account),
             });
         }
 
         if (secureValue != null) {
             const impLogger = Logger.getImperativeLogger();
-            impLogger.info("Successfully loaded secure value for service = '" + this.service +
-        "' account = '" + account + "'");
+            impLogger.info(
+                "Successfully loaded secure value for service = '" +
+                    this.service +
+                    "' account = '" +
+                    account +
+                    "'"
+            );
         }
 
         return secureValue;
@@ -100,33 +129,46 @@ class K8sCredentialManager extends AbstractCredentialManager {
      *
      * @throws {@link ImperativeError} if call to K8s API fails.
      */
-    protected async saveCredentials(account: string, credentials: SecureCredential): Promise<void> {
+    protected async saveCredentials(
+        account: string,
+        credentials: SecureCredential
+    ): Promise<void> {
         const secretName = this.getSecretName(account);
         try {
             await this.deleteCredentials(account);
         } catch (err) {
-            Logger.getImperativeLogger().debug(`No previous secret ${secretName} found for deletion.`);
+            Logger.getImperativeLogger().debug(
+                `No previous secret ${secretName} found for deletion.`
+            );
         }
         try {
             // Create K8s secret
-            Logger.getImperativeLogger().debug(`Creating k8s secret as ${secretName}`);
-            await this.kc.createNamespacedSecret(this.kubeConfig.namespace, {
-                "apiVersion": "v1",
-                "kind": "Secret",
-                "metadata": {
-                    "name": `${secretName}`,
-                    "namespace": `${this.kubeConfig.namespace}`
+            Logger.getImperativeLogger().debug(
+                `Creating k8s secret as ${secretName}`
+            );
+            await this.kc.createNamespacedSecret(
+                this.kubeConfig.namespace,
+                {
+                    apiVersion: "v1",
+                    kind: "Secret",
+                    metadata: {
+                        name: `${secretName}`,
+                        namespace: `${this.kubeConfig.namespace}`,
+                    },
+                    type: "Opaque",
+                    data: {
+                        credentials: credentials,
+                    },
                 },
-                "type": "Opaque",
-                "data": {
-                    "credentials": credentials
-                }
-            }, "true");
-            Logger.getImperativeLogger().debug(`Successfully stored credentials as a kubernetes secret on namespace ${this.kubeConfig.namespace}`);
+                "true"
+            );
+            Logger.getImperativeLogger().debug(
+                `Successfully stored credentials as a kubernetes secret on namespace ${this.kubeConfig.namespace}`
+            );
         } catch (err) {
             throw new ImperativeError({
                 msg: `Error when saving k8s secret ${secretName}`,
-                additionalDetails: err
+                additionalDetails: err,
             });
         }
     }
@@ -145,12 +187,18 @@ class K8sCredentialManager extends AbstractCredentialManager {
         const secretName = this.getSecretName(account);
         try {
             await this.readNamespacedSecret(account);
-            Logger.getImperativeLogger().debug(`Deleting k8s secret ${secretName}`);
-            await this.kc.deleteNamespacedSecret(secretName, this.kubeConfig.namespace, "true");
+            Logger.getImperativeLogger().debug(
+                `Deleting k8s secret ${secretName}`
+            );
+            await this.kc.deleteNamespacedSecret(
+                secretName,
+                this.kubeConfig.namespace,
+                "true"
+            );
         } catch (err) {
             throw new ImperativeError({
                 msg: `Failed to delete secret ${secretName} in namespace ${this.kubeConfig.namespace}`,
-                additionalDetails: err.message
+                additionalDetails: err.message,
             });
         }
     }
@@ -165,14 +213,18 @@ class K8sCredentialManager extends AbstractCredentialManager {
             listOfServices += `${service}, `;
         }
         const commaAndSpace = 2;
-        listOfServices = listOfServices.slice(0, -1 * commaAndSpace) + `\n  Account = ${account}\n\n`;
+        listOfServices =
+            listOfServices.slice(0, -1 * commaAndSpace) +
+            `\n  Account = ${account}\n\n`;
 
-        return "Could not find an entry in the credential vault for the following:\n" +
+        return (
+            "Could not find an entry in the credential vault for the following:\n" +
             listOfServices +
             "Possible Causes:\n" +
             "  This could have been caused by any manual removal of credentials from your vault.\n\n" +
             "Resolutions: \n" +
-            "  Recreate the credentials in the vault for the particular service in the vault.\n";
+            "  Recreate the credentials in the vault for the particular service in the vault.\n"
+        );
     }
 
     /**
@@ -188,31 +240,36 @@ class K8sCredentialManager extends AbstractCredentialManager {
             kc.loadFromDefault();
 
             const currentContext = kc.getContextObject(kc.getCurrentContext());
-            if(!currentContext) {
+            if (!currentContext) {
                 throw new Error("Current context was not found");
             }
             const currentUser = kc.getCurrentUser();
-            if(!currentUser) {
+            if (!currentUser) {
                 throw new Error("Current user was not found");
             }
-            const k8sNamespace = currentContext.namespace ? currentContext.namespace : currentContext.name?.split("/")[0];
-            if(!k8sNamespace) {
+            const k8sNamespace = currentContext.namespace
+                ? currentContext.namespace
+                : currentContext.name?.split("/")[0];
+            if (!k8sNamespace) {
                 throw new Error("Namespace was not defined");
             }
 
             // set all variables
             const username = currentUser.name.split("/")[0];
-            const uid = Buffer.from(username, "binary").toString("base64").toLowerCase().replace(/=/g, "");
+            const uid = Buffer.from(username, "binary")
+                .toString("base64")
+                .toLowerCase()
+                .replace(/=/g, "");
             this.kubeConfig = {
                 namespace: k8sNamespace,
-                uid: uid
+                uid: uid,
             };
 
             return kc.makeApiClient(k8s.CoreV1Api);
         } catch (err) {
             throw new ImperativeError({
                 msg: "Failed to access Kubernetes, login into your cluster and try again.",
-                additionalDetails: err.message
+                additionalDetails: err.message,
             });
         }
     }
@@ -225,9 +282,15 @@ class K8sCredentialManager extends AbstractCredentialManager {
      */
     private async readNamespacedSecret(account: string): Promise<any> {
         try {
-            return await this.kc.readNamespacedSecret(this.getSecretName(account), this.kubeConfig.namespace, "true");
+            return await this.kc.readNamespacedSecret(
+                this.getSecretName(account),
+                this.kubeConfig.namespace,
+                "true"
+            );
         } catch (err) {
-            throw new ImperativeError({ msg: `${account}-${this.kubeConfig.uid} does not exist` });
+            throw new ImperativeError({
+                msg: `${account}-${this.kubeConfig.uid} does not exist`,
+            });
         }
     }
 
@@ -237,8 +300,8 @@ class K8sCredentialManager extends AbstractCredentialManager {
      * @returns {string} the parsed string for the Kubernetes secret name
      */
     private getSecretName(account: string): string {
-        return `${account}-${this.kubeConfig.uid}`.replace(/_/g,'-').toLowerCase();
+        return `${account}-${this.kubeConfig.uid}`
+            .replace(/_/g, "-")
+            .toLowerCase();
     }
 }
-
-export = K8sCredentialManager;
