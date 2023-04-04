@@ -11,4 +11,5 @@
  *
  */
 
-export * from "./credentials/K8sCredentialManager";
+import K8sCredentialManager = require("./credentials/K8sCredentialManager");
+export { K8sCredentialManager };
