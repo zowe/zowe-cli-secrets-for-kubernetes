@@ -1,5 +1,5 @@
 {
-    "name": "zowe-secrets-for-kubernetes",
+    "name": "secrets-for-kubernetes",
     "version": "0.0.1",
     "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
     "main": "dist/extension.js",
