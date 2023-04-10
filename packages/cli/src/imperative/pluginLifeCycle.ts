@@ -9,54 +9,20 @@
  *
  */
 
-import { getZoweDir } from "@zowe/cli";
-import { AbstractPluginLifeCycle, IImperativeConfig } from "@zowe/imperative";
-import { name as packageName } from "../../package.json";
-import * as fs from "fs";
-import * as path from "path";
+import {
+    AbstractPluginLifeCycle,
+    CredentialManagerOverride,
+} from "@zowe/imperative";
+import { Constants } from "./Constants";
 
 class PluginLifeCycle extends AbstractPluginLifeCycle {
     public postInstall(): void | Promise<void> {
-        const settingsJson = path.join(
-            getZoweDir(),
-            "settings",
-            "imperative.json"
-        );
-        let imperativeSettings: IImperativeConfig;
-        if (fs.existsSync(settingsJson)) {
-            imperativeSettings = JSON.parse(
-                fs.readFileSync(settingsJson, "utf-8")
-            );
-            imperativeSettings.overrides.CredentialManager = packageName;
-        }
-
-        if (fs.existsSync(settingsJson)) {
-            fs.writeFileSync(
-                settingsJson,
-                JSON.stringify(imperativeSettings, null, 2)
-            );
-        }
+        CredentialManagerOverride.recordCredMgrInConfig(Constants.DISPLAY_NAME);
     }
     public preUninstall(): void | Promise<void> {
-        const settingsJson = path.join(
-            getZoweDir(),
-            "settings",
-            "imperative.json"
+        CredentialManagerOverride.recordDefaultCredMgrInConfig(
+            Constants.DISPLAY_NAME
         );
-        let imperativeSettings: IImperativeConfig;
-        if (fs.existsSync(settingsJson)) {
-            imperativeSettings = JSON.parse(
-                fs.readFileSync(settingsJson, "utf-8")
-            );
-            imperativeSettings.overrides.CredentialManager = "@zowe/cli";
-        }
-
-        if (fs.existsSync(settingsJson)) {
-            fs.writeFileSync(
-                settingsJson,
-                JSON.stringify(imperativeSettings, null, 2)
-            );
-        }
     }
 }
 
