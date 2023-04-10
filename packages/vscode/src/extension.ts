@@ -1,7 +1,10 @@
 import * as vscode from "vscode";
+import { ICredentialManagerConstructor } from "@zowe/imperative";
 import K8sCredentialManager = require("../../cli/src/credentials/K8sCredentialManager");
 
-export function activate(context: vscode.ExtensionContext): any {
+export function activate(
+    context: vscode.ExtensionContext
+): ICredentialManagerConstructor {
     return K8sCredentialManager;
 }
 
