@@ -16,14 +16,14 @@
         "vscode": "^1.77.0"
     },
     "scripts": {
-        "build": "tsup-node",
+        "build": "tsup",
         "dev": "npm run build -- --watch",
         "test": "echo \"VS Code package: No test specified\" && exit 0",
         "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
         "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
-        "vscode:prepublish": "npm run clean && tsup-node",
+        "vscode:prepublish": "npm run clean && tsup",
         "clean": "rimraf dist",
-        "package": "vsce package --allow-star-activation --no-yarn --out ../../dist/Zowe.secrets-for-kubernetes.vsix"
+        "package": "vsce package --dependencies --no-yarn --out ../../dist/Zowe.secrets-for-kubernetes.vsix"
     },
     "activationEvents": [],
     "devDependencies": {

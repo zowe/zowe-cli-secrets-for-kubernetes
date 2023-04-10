@@ -49,13 +49,6 @@
         "@zowe/imperative": "*",
         "@zowe/cli-test-utils": "^7.13.0"
     },
-    "dependencies": {
-        "@kubernetes/client-node": "0.18.1"
-    },
-    "devDependencies": {
-        "@zowe/cli": "^7.13.0",
-        "@zowe/cli-test-utils": "^7.13.0"
-    },
     "jest": {
         "setupFilesAfterEnv": [
             "./__tests__/setUpJest.ts"
