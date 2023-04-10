@@ -1,5 +1,5 @@
 {
-    "name": "secrets-for-kubernetes",
+    "name": "zowe-secrets-for-kubernetes",
     "version": "1.0.0",
     "private": true,
     "scripts": {
@@ -21,10 +21,6 @@
         "node": ">=16.19.0"
     },
     "packageManager": "npm@8.19.3",
-    "peerDependencies": {
-        "@zowe/cli": "^7.0.0",
-        "@zowe/imperative": "^5.0.0"
-    },
     "devDependencies": {
         "@types/fs-extra": "^11.0.1",
         "@types/jest": "^29.5.0",
@@ -34,9 +30,7 @@
         "@types/yargs": "^17.0.24",
         "@typescript-eslint/eslint-plugin": "^5.57.1",
         "@typescript-eslint/parser": "^5.57.1",
-        "@zowe/cli": "^7.12.0",
-        "@zowe/cli-test-utils": "^7.12.0",
-        "@zowe/imperative": "^5.11.1",
+        "@zowe/imperative": "^5.12.0",
         "chalk": "^4.1.2",
         "coveralls": "^3.1.1",
         "env-cmd": "^10.1.0",

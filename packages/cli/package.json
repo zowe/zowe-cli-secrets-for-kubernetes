@@ -17,10 +17,10 @@
         "lib",
         "scripts"
     ],
-    "main": "lib/index.js",
-    "typings": "lib/index.d.ts",
+    "main": "lib/src/index.js",
+    "typings": "lib/src/index.d.ts",
     "imperative": {
-        "configurationModule": "lib/imperative/configuration.js"
+        "configurationModule": "lib/src/imperative/configuration.js"
     },
     "scripts": {
         "clean": "rimraf lib",
@@ -35,16 +35,19 @@
         "watch": "tsc --pretty --watch",
         "watch:test": "jest --watch",
         "installPlugin": "npm install && npm run clean && npm run build && zowe plugins install .",
-        "postinstall": "node scripts/postinstall.js && echo \"The kubernetes secrets plugin has been successfully installed. The CLI will now use kubernetes secrets for storing credentials on your logged in cluster. CLI Profiles that you have created will need to be updated because their credentials are stored in plain text and not accessible from the credential manager.\" 1>&2",
-        "preuninstall": "node scripts/preuninstall.js",
         "postuninstall": "echo \"CLI Profiles that you have created will need to be recreated because their credentials are stored in the credential manager that has been uninstalled. Refer to the available options in the help text to create a new profile 'zowe profiles create zosmf-profile -h'.\" 1>&2",
         "typedoc": "typedoc --out ./docs/typedoc/ ./src/ --disableOutputCheck",
-        "test": "npm run test:unit",
+        "test": "npm run test:unit && npm run test:system",
         "test:cleanResults": "rimraf __tests__/__results__",
         "test:unit": "env-cmd -f __tests__/__resources__/env/unit.env jest --coverage --testPathIgnorePatterns \".*/__system__/.*\" ",
         "test:system": "env-cmd -f __tests__/__resources__/env/system.env jest .*/__system__/.* --coverage false --runInBand",
         "coverage": "jest --coverage",
         "package": "npm run clean && node ../../scripts/updateLicenses.js && npm run build && npm pack --pack-destination ../../dist"
+    },
+    "peerDependencies": {
+        "@zowe/cli": "^7.13.0",
+        "@zowe/imperative": "^5.12.0",
+        "@zowe/cli-test-utils": "^7.13.0"
     },
     "dependencies": {
         "@kubernetes/client-node": "0.18.1"
