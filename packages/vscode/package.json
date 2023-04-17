@@ -13,7 +13,7 @@
     "author": "Zowe",
     "license": "EPL-2.0",
     "engines": {
-        "vscode": "^1.77.0"
+        "vscode": "^1.53.2"
     },
     "scripts": {
         "build": "tsup",
@@ -27,8 +27,8 @@
     },
     "activationEvents": [],
     "devDependencies": {
-        "@types/vscode": "^1.77.0",
-        "@vscode/vsce": "^2.18.0"
+        "@types/vscode": "^1.53.2",
+        "@vscode/vsce": "^2.19.0"
     },
     "tsup": {
         "entry": [
