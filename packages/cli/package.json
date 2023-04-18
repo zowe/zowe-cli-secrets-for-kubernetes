@@ -35,7 +35,6 @@
         "watch": "tsc --pretty --watch",
         "watch:test": "jest --watch",
         "installPlugin": "npm install && npm run clean && npm run build && zowe plugins install .",
-        "postuninstall": "echo \"CLI Profiles that you have created will need to be recreated because their credentials are stored in the credential manager that has been uninstalled. Refer to the available options in the help text to create a new profile 'zowe profiles create zosmf-profile -h'.\" 1>&2",
         "typedoc": "typedoc --out ./docs/typedoc/ ./src/ --disableOutputCheck",
         "test": "npm run test:unit && npm run test:system",
         "test:cleanResults": "rimraf __tests__/__results__",
@@ -45,8 +44,10 @@
         "package": "npm run clean && node ../../scripts/updateLicenses.js && npm run build && npm pack --pack-destination ../../dist"
     },
     "peerDependencies": {
+        "@zowe/imperative": "*"
+    },
+    "devDependencies": {
         "@zowe/cli": "^7.13.0",
-        "@zowe/imperative": "*",
         "@zowe/cli-test-utils": "^7.13.0"
     },
     "dependencies": {

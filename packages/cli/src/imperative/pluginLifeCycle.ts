@@ -16,10 +16,10 @@ import {
 import { Constants } from "./Constants";
 
 class PluginLifeCycle extends AbstractPluginLifeCycle {
-    public postInstall(): void | Promise<void> {
+    public postInstall(): void {
         CredentialManagerOverride.recordCredMgrInConfig(Constants.DISPLAY_NAME);
     }
-    public preUninstall(): void | Promise<void> {
+    public preUninstall(): void {
         CredentialManagerOverride.recordDefaultCredMgrInConfig(
             Constants.DISPLAY_NAME
         );

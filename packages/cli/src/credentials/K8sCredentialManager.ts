@@ -26,7 +26,6 @@ type KubeConfig = {
 
 class K8sCredentialManager extends AbstractCredentialManager {
     public static readonly SVC_NAME = "k8s";
-    private allServices: string[];
     private kubeConfig: KubeConfig;
     private kc: any;
 
@@ -35,14 +34,6 @@ class K8sCredentialManager extends AbstractCredentialManager {
         displayName: string = "K8s Credential Manager"
     ) {
         super(service, displayName);
-        this.allServices = [service || K8sCredentialManager.SVC_NAME];
-        if (this.defaultService === K8sCredentialManager.SVC_NAME) {
-            this.allServices.push(
-                "@zowe/cli",
-                "Zowe-Plugin",
-                "Broadcom-Plugin"
-            );
-        }
         this.kc = this.setupKubeConfig();
     }
 
@@ -100,7 +91,6 @@ class K8sCredentialManager extends AbstractCredentialManager {
         if (secureValue == null && !optional) {
             throw new ImperativeError({
                 msg: "Unable to load credentials.",
-                additionalDetails: this.getMissingEntryMessage(account),
             });
         }
 
@@ -201,30 +191,6 @@ class K8sCredentialManager extends AbstractCredentialManager {
                 additionalDetails: err.message,
             });
         }
-    }
-
-    private get defaultService(): string {
-        return this.allServices[0];
-    }
-
-    private getMissingEntryMessage(account: string) {
-        let listOfServices = `  Service = `;
-        for (const service of this.allServices) {
-            listOfServices += `${service}, `;
-        }
-        const commaAndSpace = 2;
-        listOfServices =
-            listOfServices.slice(0, -1 * commaAndSpace) +
-            `\n  Account = ${account}\n\n`;
-
-        return (
-            "Could not find an entry in the credential vault for the following:\n" +
-            listOfServices +
-            "Possible Causes:\n" +
-            "  This could have been caused by any manual removal of credentials from your vault.\n\n" +
-            "Resolutions: \n" +
-            "  Recreate the credentials in the vault for the particular service in the vault.\n"
-        );
     }
 
     /**
