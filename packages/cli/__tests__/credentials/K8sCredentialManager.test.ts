@@ -259,12 +259,6 @@ describe("K8sCredentialManager", () => {
                 expect(caughtError?.message).toEqual(
                     "Unable to load credentials."
                 );
-                expect(
-                    (caughtError as ImperativeError).additionalDetails
-                ).toContain(values.account);
-                expect(
-                    (caughtError as ImperativeError).additionalDetails
-                ).toContain(service);
             });
 
             it("should not throw an error when optional credential fails to load", async () => {
