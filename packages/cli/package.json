@@ -44,7 +44,7 @@
         "package": "npm run clean && node ../../scripts/updateLicenses.js && npm run build && npm pack --pack-destination ../../dist"
     },
     "peerDependencies": {
-        "@zowe/imperative": "*"
+        "@zowe/imperative": "^5.12.0"
     },
     "devDependencies": {
         "@zowe/cli": "^7.13.0",
