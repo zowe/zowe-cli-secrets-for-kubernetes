@@ -14,3 +14,4 @@ docs/typedoc
 build/**
 .next/**
 dist/
+.DS_Store
