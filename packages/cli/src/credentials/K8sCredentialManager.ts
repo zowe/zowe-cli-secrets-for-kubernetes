@@ -213,9 +213,19 @@ class K8sCredentialManager extends AbstractCredentialManager {
             if (!currentUser) {
                 throw new Error("Current user was not found");
             }
-            const k8sNamespace = currentContext.namespace
-                ? currentContext.namespace
-                : currentContext.name?.split("/")[0];
+            let k8sNamespace;
+            if (
+                process.env.DEVWORKSPACE_NAMESPACE ||
+                process.env.WORKSPACE_NAMESPACE
+            ) {
+                k8sNamespace =
+                    process.env.DEVWORKSPACE_NAMESPACE ||
+                    process.env.WORKSPACE_NAMESPACE;
+            } else {
+                k8sNamespace = currentContext.namespace
+                    ? currentContext.namespace
+                    : currentContext.name?.split("/")[0];
+            }
             if (!k8sNamespace) {
                 throw new Error("Namespace was not defined");
             }
