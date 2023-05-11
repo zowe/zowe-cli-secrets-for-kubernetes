@@ -60,7 +60,7 @@ jobs:
     - name: Start K3s Cluster
       id: k3s
       if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
-      uses: nolar/setup-k3d-k3s@latest
+      uses: nolar/setup-k3d-k3s@v1
 
     - name: Create System Test Properties
       if: ${{ always() && steps.k3s.outcome == 'success' }}
