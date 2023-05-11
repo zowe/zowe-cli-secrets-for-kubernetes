@@ -205,7 +205,6 @@ class K8sCredentialManager extends AbstractCredentialManager {
             const kc: any = new k8s.KubeConfig();
             kc.loadFromDefault();
 
-            // Check for $WORKSPACE_NAMESPACE or $DEVWORKSPACE_NAMESPACE
             const currentContext = kc.getContextObject(kc.getCurrentContext());
             if (!currentContext) {
                 throw new Error("Current context was not found");
@@ -216,12 +215,12 @@ class K8sCredentialManager extends AbstractCredentialManager {
             }
             let k8sNamespace;
             if (
-                process.env.WORKSPACE_NAMESPACE ||
-                process.env.DEVWORKSPACE_NAMESPACE
+                process.env.DEVWORKSPACE_NAMESPACE ||
+                process.env.WORKSPACE_NAMESPACE
             ) {
                 k8sNamespace =
-                    process.env.WORKSPACE_NAMESPACE ||
-                    process.env.DEVWORKSPACE_NAMESPACE;
+                    process.env.DEVWORKSPACE_NAMESPACE ||
+                    process.env.WORKSPACE_NAMESPACE;
             } else {
                 k8sNamespace = currentContext.namespace
                     ? currentContext.namespace
