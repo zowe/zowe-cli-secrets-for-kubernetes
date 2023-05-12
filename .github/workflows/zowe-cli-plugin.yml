@@ -61,6 +61,10 @@ jobs:
       id: k3s
       if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
       uses: nolar/setup-k3d-k3s@v1
+            
+    - name: Set K8s Namespace
+      if: ${{ always() && steps.k3s.outcome == 'success' }}
+      run: kubectl config set-context --current --namespace=default
 
     - name: Create System Test Properties
       if: ${{ always() && steps.k3s.outcome == 'success' }}
