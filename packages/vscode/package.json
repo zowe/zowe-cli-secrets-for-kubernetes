@@ -1,46 +1,47 @@
 {
-  "name": "zowe-secrets-for-kubernetes",
-  "version": "1.0.0",
-  "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
-  "main": "dist/extension.js",
-  "typings": "dist/extension.d.ts",
-  "keywords": [
-    "credential manager",
-    "secure store",
-    "password"
-  ],
-  "publisher": "Zowe",
-  "author": "IBM",
-  "license": "EPL-2.0",
-  "engines": {
-    "vscode": "^1.76.0"
-  },
-  "scripts": {
-    "build": "tsup",
-    "dev": "npm run build -- --watch",
-    "test": "echo \"VS Code package: No test specified\" && exit 0",
-    "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
-    "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
-    "vscode:prepublish": "npm run clean && tsup",
-    "clean": "rimraf dist",
-    "package": "vsce package --allow-star-activation --no-yarn --out ../../dist/Zowe.secrets-for-kubernetes.vsix"
-  },
-  "activationEvents": [
-    "*"
-  ],
-  "devDependencies": {
-    "@types/vscode": "^1.76.0",
-    "@vscode/vsce": "^2.18.0"
-  },
-  "tsup": {
-    "entry": ["src/extension.ts"],
-    "splitting": false,
-    "sourcemap": true,
-    "clean": true,
-    "format": "cjs",
-    "dts": true,
-    "external": [
-      "vscode"
-    ]
-  }
+    "name": "secrets-for-kubernetes",
+    "version": "0.0.1",
+    "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
+    "main": "dist/extension.js",
+    "typings": "dist/extension.d.ts",
+    "keywords": [
+        "credential manager",
+        "secure store",
+        "password"
+    ],
+    "publisher": "Zowe",
+    "author": "Zowe",
+    "license": "EPL-2.0",
+    "engines": {
+        "vscode": "^1.53.2"
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "npm run build -- --watch",
+        "test": "echo \"VS Code package: No test specified\" && exit 0",
+        "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
+        "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
+        "vscode:prepublish": "npm run clean && tsup",
+        "clean": "rimraf dist",
+        "package": "vsce package --dependencies --no-yarn --out ../../dist/Zowe.secrets-for-kubernetes.vsix"
+    },
+    "activationEvents": [],
+    "devDependencies": {
+        "@types/vscode": "^1.53.2",
+        "@vscode/vsce": "^2.19.0"
+    },
+    "tsup": {
+        "entry": [
+            "src/extension.ts"
+        ],
+        "splitting": false,
+        "sourcemap": true,
+        "clean": true,
+        "format": "cjs",
+        "dts": true,
+        "external": [
+            "vscode"
+        ],
+        "minify": "terser"
+    }
 }

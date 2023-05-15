@@ -16,10 +16,12 @@ export const SERVICE2: string = "@brightside/core";
 export const DISPLAY_NAME2: string = "@brightside/secure-credential-store";
 
 export const SERVICE3: string = "@zowe/cli";
-export const DISPLAY_NAME3: string = "@zowe/secure-credential-store-for-zowe-cli";
+export const DISPLAY_NAME3: string =
+    "@zowe/secure-credential-store-for-zowe-cli";
 
 export const PLUGIN_SERVICE: string = "Zowe-Plugin";
-export const FINAL_PLUGIN_NAME: string = "@zowe/secure-credential-store-for-zowe-cli";
+export const FINAL_PLUGIN_NAME: string =
+    "@zowe/secure-credential-store-for-zowe-cli";
 
 export const ACC1: string = "AccountOne";
 export const ACC2: string = "AccountTwo";
@@ -42,31 +44,31 @@ export const SERVICE3PASS3: string = SERVICE3 + "=" + PASS3;
 export const TEST_CREDENTIALS = {
     [SERVICE]: {
         [ACC1]: Buffer.from(PASS1).toString("base64"),
-        [ACC2]: Buffer.from(PASS2).toString("base64")
+        [ACC2]: Buffer.from(PASS2).toString("base64"),
     },
     [SERVICE2]: {
         [ACC1]: Buffer.from(SERVICE2PASS1).toString("base64"),
         [ACC2]: Buffer.from(SERVICE2PASS2).toString("base64"),
-        [ACC3]: Buffer.from(SERVICE2PASS3).toString("base64")
+        [ACC3]: Buffer.from(SERVICE2PASS3).toString("base64"),
     },
     [SERVICE3]: {
         [ACC1]: Buffer.from(SERVICE3PASS1).toString("base64"),
         [ACC2]: Buffer.from(SERVICE3PASS2).toString("base64"),
-        [ACC3]: Buffer.from(SERVICE3PASS3).toString("base64")
-    }
+        [ACC3]: Buffer.from(SERVICE3PASS3).toString("base64"),
+    },
 };
 
 export const TEST_CREDENTIALS_TO_SHOWCASE_CONFLICTS = {
     [SERVICE2]: {
         [ACC1]: Buffer.from(SERVICE2PASS1).toString("base64"),
-        [ACC2]: Buffer.from(SERVICE2PASS2).toString("base64")
+        [ACC2]: Buffer.from(SERVICE2PASS2).toString("base64"),
     },
     [SERVICE3]: {
         [ACC1]: Buffer.from(SERVICE3PASS1).toString("base64"),
-        [ACC3]: Buffer.from(SERVICE3PASS3).toString("base64")
+        [ACC3]: Buffer.from(SERVICE3PASS3).toString("base64"),
     },
     [PLUGIN_SERVICE]: {
-        [ACC4]: Buffer.from(PASS4).toString("base64")
+        [ACC4]: Buffer.from(PASS4).toString("base64"),
     },
 };
 
@@ -78,8 +80,8 @@ export const TEST_PASS: string = "my-test-pass";
 export const CREDENTIALS_WITH_BREAKING_CHANGES = {
     [SERVICE2]: {
         [ACCT_USERNAME]: Buffer.from(TEST_USERNAME).toString("base64"),
-        [ACCT_PASS]: Buffer.from(TEST_PASS).toString("base64")
-    }
+        [ACCT_PASS]: Buffer.from(TEST_PASS).toString("base64"),
+    },
 };
 
-export const SIGNATURE: string = "managed by @zowe/secrets-for-kubernetes-for-zowe-cli";
+export const SIGNATURE: string = "managed by Secrets for Kubernetes";

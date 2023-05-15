@@ -15,13 +15,14 @@ import { Constants } from "./Constants";
 const config: IImperativeConfig = {
     pluginSummary: Constants.PLUGIN_SUMMARY,
     pluginHealthCheck: "./lib/imperative/healthCheckHandler",
+    pluginLifeCycle: "./lib/imperative/pluginLifeCycle",
     pluginAliases: [Constants.ALIAS],
     rootCommandDescription: Constants.PLUGIN_DESCRIPTION,
     productDisplayName: Constants.DISPLAY_NAME,
     name: Constants.NAME,
     definitions: [],
     overrides: {
-        CredentialManager: "./credentials/K8sCredentialManager"
+        CredentialManager: "./credentials/K8sCredentialManager",
     },
 };
 
