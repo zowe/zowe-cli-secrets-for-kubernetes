@@ -14,7 +14,7 @@ In addition, when storing Kubernetes secrets, the secret will be stored in the a
 
 Before you install and use the plug-in make sure you have the following tools installed:
 
-- Zowe CLI For more information, see [installing Zowe CLI](https://docs.zowe.org/stable/user-guide/cli-installcli.html).
+- Zowe CLI. For more information, see [installing Zowe CLI](https://docs.zowe.org/stable/user-guide/cli-installcli.html).
 - [Node.js](https://nodejs.org/en/download) v16.0 or later.
 
 ## Installing
