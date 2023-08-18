@@ -1,6 +1,6 @@
 # Kubernetes Secrets for Zowe CLI and Zowe Explorer
 
-The Kubernetes Secrets plug-in for Zowe CLI and Zowe Explorer allows you to store your Zowe profile credentials as Kubernetes secrets in your Kubernetes cluster of choice. This is by changing the default credential manager upon installation into Zowe CLI or Zowe Explorer.
+The Kubernetes Secrets plug-in for Zowe CLI and Zowe Explorer allows you to store your Zowe profile credentials as Kubernetes secrets in your Kubernetes cluster of choice. It changes the default credential manager when installed in Zowe CLI or Zowe Explorer.
 
 This plug-in can also be used as a sample to build your own custom credential manager to use based on your own use case.
 
