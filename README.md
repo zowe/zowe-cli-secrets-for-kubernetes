@@ -8,7 +8,7 @@ This plug-in also serves as a custom credential manager sample for your own use 
 
 The plug-in uses the Kubernetes API in order to communicate with your Kubernetes cluster and store secrets on a per user basis.
 
-In addition, when storing Kubernetes secrets, the secret will be stored in the assigned namespace for the current context or otherwise through an environment variable named `$DEVWORKSPACE_NAMESPACE` and `$WORKSPACE_NAMESPACE`.
+In addition, when storing Kubernetes secrets, users can specify a namespace through the environment variables `$DEVWORKSPACE_NAMESPACE` and `$WORKSPACE_NAMESPACE`. Otherwise, the secret will be stored in the assigned namespace for the current context.
 
 ## Requirements
 
