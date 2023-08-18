@@ -12,7 +12,7 @@ In addition, when storing Kubernetes secrets, users can specify a namespace thro
 
 ## Requirements
 
-Before you install and use the plug-in make sure you have the following tools installed:
+Before you install and use the plug-in, make sure you have the following tools installed:
 
 - Zowe CLI. For more information, see [installing Zowe CLI](https://docs.zowe.org/stable/user-guide/cli-installcli.html).
 - [Node.js](https://nodejs.org/en/download) v16.0 or later.
