@@ -6,7 +6,7 @@ Use one of the following methods to install the plug-in:
 
 - Install the plug-in to Zowe CLI from an online registry or a local package.
 
-  Use this method when you want to install the plug-in quickly and start using it. With this method, you secure your user IDs and passwords manually.
+  Use these methods when when you want to install the plug-in quickly and start using it. With this method, you secure your user IDs and passwords manually.
 
   For more information, see [Install Plug-ins from an Online Registry](https://docs.zowe.org/stable/user-guide/cli-installplugins.html#installing-plug-ins-from-an-online-registry) or [Install Plug-ins from a Local Package](https://docs.zowe.org/stable/user-guide/cli-installplugins.html#installing-plug-ins-from-a-local-package).
 
