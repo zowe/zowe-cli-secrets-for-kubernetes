@@ -1,7 +1,6 @@
 {
     "name": "zowe-secrets-for-kubernetes",
     "version": "0.0.1",
-    "private": true,
     "scripts": {
         "build": "turbo build",
         "package": "npm run package --workspaces",
