@@ -1,6 +1,6 @@
 {
     "name": "secrets-for-kubernetes",
-    "version": "0.0.1-next.202308311442",
+    "version": "0.0.1-next.202308311516",
     "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
     "main": "dist/extension.js",
     "typings": "dist/extension.d.ts",
