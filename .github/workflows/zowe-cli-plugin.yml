@@ -139,3 +139,5 @@ jobs:
                   NPM_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
                   NPM_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
                   NPM_EMAIL: ${{ secrets.ZOWE_ROBOT_EMAIL }}
+                  OVSX_PAT: ${{ secrets.VSCODE_OVSX_PUBLISHER_TOKEN }}
+                  VSCE_PAT: ${{ secrets.VSCODE_VSCE_PUBLISHER_TOKEN }}
