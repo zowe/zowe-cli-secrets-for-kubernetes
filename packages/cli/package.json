@@ -31,7 +31,6 @@
         "lint:tests": "eslint \"**/__tests__/**/*.ts\"",
         "prebuild": "npm run clean && npm run lint && echo Using TypeScript && tsc --version",
         "build": "tsc --pretty && npm run checkTestsCompile && npm run circularDependencyCheck",
-        "prepublishOnly": "npm run build && bash ./scripts/bundleKeytar.sh",
         "watch": "tsc --pretty --watch",
         "watch:test": "jest --watch",
         "installPlugin": "npm install && npm run clean && npm run build && zowe plugins install .",
