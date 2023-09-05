@@ -27,7 +27,7 @@
     },
     "activationEvents": [],
     "devDependencies": {
-        "@types/vscode": "1.63.2",
+        "@types/vscode": "^1.63.2",
         "@vscode/vsce": "^2.21.0"
     },
     "tsup": {
