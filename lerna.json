@@ -1,10 +1,10 @@
 {
-  "version": "0.0.1-next.202309052011",
-  "command": {
-    "version": {
-      "forcePublish": true,
-      "private": true
-    }
-  },
-  "useWorkspaces": true
+    "version": "0.1.0",
+    "command": {
+        "version": {
+            "forcePublish": true,
+            "private": true
+        }
+    },
+    "useWorkspaces": true
 }
