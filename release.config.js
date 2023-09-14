@@ -4,7 +4,7 @@ module.exports = {
             name: "main",
             channel: "next",
             level: "minor",
-            prerelease: true,
+            prerelease: false,
         },
     ],
     plugins: [
