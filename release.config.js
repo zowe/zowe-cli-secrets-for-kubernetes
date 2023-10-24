@@ -32,7 +32,7 @@ module.exports = {
             {
                 $cwd: "packages/cli",
                 aliasTags: {
-                    latest: ["zowe-v1-lts"],
+                    latest: ["next"],
                 },
                 npmPublish: true,
                 tarballDir: "dist",
