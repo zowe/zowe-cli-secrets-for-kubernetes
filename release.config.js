@@ -32,7 +32,7 @@ module.exports = {
             {
                 $cwd: "packages/cli",
                 aliasTags: {
-                    latest: ["next"],
+                    next: ["latest"],
                 },
                 npmPublish: true,
                 tarballDir: "dist",
