@@ -18,6 +18,7 @@
     "scripts": {
         "build": "tsup",
         "dev": "npm run build -- --watch",
+        "lint": "eslint \"src/**/*.ts\"",
         "test": "echo \"VS Code package: No test specified\" && exit 0",
         "test:system": "echo \"VS Code package: No system test specified\" && exit 0",
         "test:unit": "echo \"VS Code package: No unit test specified\" && exit 0",
