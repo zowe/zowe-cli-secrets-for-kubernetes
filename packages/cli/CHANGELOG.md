@@ -2,6 +2,11 @@
 
 All notable changes to the Kubernetes Secrets Credential Manager Plug-in for Zowe CLI will be documented in this file.
 
+## v0.1.3
+
+- Added security updates for dependencies
+- Bumped NPM version to 9.8.1 and Node to 18.18.2
+
 ## v0.1.2
 
 - Added security updates for dependencies
