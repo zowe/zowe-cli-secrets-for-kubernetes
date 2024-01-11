@@ -13,7 +13,8 @@
         "sourceMap": true,
         "newLine": "lf",
         "strictNullChecks": false,
-        "noUnusedLocals": false
+        "noUnusedLocals": false,
+        "esModuleInterop": true
     },
     "exclude": [
         "lib",
