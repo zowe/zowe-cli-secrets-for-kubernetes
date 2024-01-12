@@ -91,7 +91,7 @@ class K8sCredentialManager extends AbstractCredentialManager {
             loadError = err;
         }
 
-        if (loadError != null || (secureValue == null && !optional)) {
+        if (secureValue == null && !optional) {
             throw new ImperativeError({
                 msg: "Unable to load credentials.",
                 additionalDetails: loadError?.message,
