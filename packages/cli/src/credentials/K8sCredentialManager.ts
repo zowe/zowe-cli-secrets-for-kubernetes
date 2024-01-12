@@ -55,16 +55,17 @@ class K8sCredentialManager extends AbstractCredentialManager {
         } catch (err) {
             const authenticationErrorCode = 403;
             const unauthorizedErrorCode = 401;
+            let errorMsg = `Failed to read namespace ${this.kubeConfig.namespace}`;
             if (
                 err.statusCode === authenticationErrorCode ||
                 err.statusCode === unauthorizedErrorCode
             ) {
-                throw new ImperativeError({
-                    msg: "Authentication error when trying to access kubernetes cluster. Login to cluster and try again.",
-                });
+                errorMsg =
+                    "Authentication error when trying to access kubernetes cluster. Login to cluster and try again.";
             }
             throw new ImperativeError({
-                msg: err.message,
+                msg: errorMsg,
+                additionalDetails: err,
             });
         }
     }
@@ -84,15 +85,15 @@ class K8sCredentialManager extends AbstractCredentialManager {
         let secureValue: any = null;
         try {
             const response: any = await this.readNamespacedSecret(account);
-            secureValue = response.body.data["credentials"];
+            secureValue = response.data["credentials"];
         } catch (err) {
             secureValue = null;
-        }
-
-        if (secureValue == null && !optional) {
-            throw new ImperativeError({
-                msg: "Unable to load credentials.",
-            });
+            if (!optional) {
+                throw new ImperativeError({
+                    msg: "Unable to load credentials.",
+                    additionalDetails: err,
+                });
+            }
         }
 
         if (secureValue != null) {
