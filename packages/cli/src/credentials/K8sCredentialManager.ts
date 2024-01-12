@@ -83,17 +83,19 @@ class K8sCredentialManager extends AbstractCredentialManager {
             `Loading k8s secret ${this.getSecretName(account)}`
         );
         let secureValue: any = null;
+        let loadError: Error;
         try {
             const response: any = await this.readNamespacedSecret(account);
             secureValue = response.data["credentials"];
         } catch (err) {
-            secureValue = null;
-            if (!optional) {
-                throw new ImperativeError({
-                    msg: "Unable to load credentials.",
-                    additionalDetails: err,
-                });
-            }
+            loadError = err;
+        }
+
+        if (loadError != null || (secureValue == null && !optional)) {
+            throw new ImperativeError({
+                msg: "Unable to load credentials.",
+                additionalDetails: loadError?.message,
+            });
         }
 
         if (secureValue != null) {
