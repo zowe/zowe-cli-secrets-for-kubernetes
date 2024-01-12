@@ -9,7 +9,12 @@
  *
  */
 
-import { ITestEnvironment, TestEnvironment, runCliScript, stripProfileDeprecationMessages } from "@zowe/cli-test-utils";
+import {
+    ITestEnvironment,
+    TestEnvironment,
+    runCliScript,
+    stripProfileDeprecationMessages,
+} from "@zowe/cli-test-utils";
 import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertiesSchema";
 
 import * as C from "../__src__/KeytarConstants";
@@ -23,7 +28,7 @@ describe("Credential Manager Plugin for v1 profiles", () => {
             installPlugin: true,
             tempProfileTypes: ["zosmf"],
             testName: "cm_tests",
-            createOldProfiles: true
+            createOldProfiles: true,
         });
     });
 
@@ -32,10 +37,13 @@ describe("Credential Manager Plugin for v1 profiles", () => {
     });
 
     it("should store credentials securely", () => {
-        const response = runCliScript(__dirname + "/__scripts__/cm_create_v1.sh", TEST_ENV);
-        expect(response.status).toBe(0);
+        const response = runCliScript(
+            __dirname + "/__scripts__/cm_create_v1.sh",
+            TEST_ENV
+        );
         expect(stripProfileDeprecationMessages(response.stderr)).toEqual("");
         expect(response.stdout.toString()).toContain(C.SIGNATURE);
+        expect(response.status).toBe(0);
     });
 });
 
@@ -56,12 +64,19 @@ describe("Credential manager plugin for v2 profiles", () => {
     });
 
     it("should store credentials securely", () => {
-        const response = runCliScript(__dirname + "/__scripts__/cm_create_v2.sh", TEST_ENV);
-        expect(response.status).toBe(0);
-        expect(response.stderr.toString()).toContain("");
+        const response = runCliScript(
+            __dirname + "/__scripts__/cm_create_v2.sh",
+            TEST_ENV
+        );
+        expect(response.stderr.toString()).toEqual("");
         expect(response.stdout.toString()).not.toContain("USER");
         expect(response.stdout.toString()).not.toContain("PLAINTEXT");
-        expect(response.stdout.toString()).toContain(`"user": "(secure value)"`);
-        expect(response.stdout.toString()).toContain(`"password": "(secure value)"`);
+        expect(response.stdout.toString()).toContain(
+            `"user": "(secure value)"`
+        );
+        expect(response.stdout.toString()).toContain(
+            `"password": "(secure value)"`
+        );
+        expect(response.status).toBe(0);
     });
 });
