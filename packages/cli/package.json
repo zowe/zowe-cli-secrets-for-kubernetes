@@ -1,6 +1,6 @@
 {
     "name": "@zowe/secrets-for-kubernetes-for-zowe-cli",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Kubernetes secrets plugin for Zowe CLI",
     "author": "Zowe",
     "license": "EPL-2.0",
