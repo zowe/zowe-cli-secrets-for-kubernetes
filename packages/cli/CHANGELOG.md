@@ -2,7 +2,7 @@
 
 All notable changes to the Kubernetes Secrets Credential Manager Plug-in for Zowe CLI will be documented in this file.
 
-## TBD Release
+## Recent Changes
 
 ### New features and enhancements
 
