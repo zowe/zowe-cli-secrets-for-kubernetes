@@ -15,9 +15,7 @@ import {
     Logger,
     SecureCredential,
 } from "@zowe/imperative";
-
-// Has to be required instead of imported since it causes import issues
-const k8s = require("@kubernetes/client-node");
+import * as k8s from "@kubernetes/client-node";
 
 type KubeConfig = {
     namespace: string;
@@ -27,7 +25,7 @@ type KubeConfig = {
 class K8sCredentialManager extends AbstractCredentialManager {
     public static readonly SVC_NAME = "k8s";
     private kubeConfig: KubeConfig;
-    private kc: any;
+    private kc: k8s.CoreV1Api;
 
     constructor(
         service: string,
@@ -47,23 +45,27 @@ class K8sCredentialManager extends AbstractCredentialManager {
      */
     public async initialize(): Promise<void> {
         try {
-            await this.kc.readNamespace(this.kubeConfig.namespace, "true");
+            await this.kc.readNamespace({
+                name: this.kubeConfig.namespace,
+                pretty: "true",
+            });
             Logger.getImperativeLogger().debug(
                 `Namespace ${this.kubeConfig.namespace} was found`
             );
         } catch (err) {
             const authenticationErrorCode = 403;
             const unauthorizedErrorCode = 401;
+            let errorMsg = `Failed to read namespace ${this.kubeConfig.namespace}`;
             if (
                 err.statusCode === authenticationErrorCode ||
                 err.statusCode === unauthorizedErrorCode
             ) {
-                throw new ImperativeError({
-                    msg: "Authentication error when trying to access kubernetes cluster. Login to cluster and try again.",
-                });
+                errorMsg =
+                    "Authentication error when trying to access kubernetes cluster. Login to cluster and try again.";
             }
             throw new ImperativeError({
-                msg: `Namespace ${this.kubeConfig.namespace} does not exist`,
+                msg: errorMsg,
+                additionalDetails: err,
             });
         }
     }
@@ -81,16 +83,18 @@ class K8sCredentialManager extends AbstractCredentialManager {
             `Loading k8s secret ${this.getSecretName(account)}`
         );
         let secureValue: any = null;
+        let loadError: Error;
         try {
             const response: any = await this.readNamespacedSecret(account);
-            secureValue = response.body.data["credentials"];
+            secureValue = response.data["credentials"];
         } catch (err) {
-            secureValue = null;
+            loadError = err;
         }
 
         if (secureValue == null && !optional) {
             throw new ImperativeError({
                 msg: "Unable to load credentials.",
+                additionalDetails: loadError?.message,
             });
         }
 
@@ -136,9 +140,9 @@ class K8sCredentialManager extends AbstractCredentialManager {
             Logger.getImperativeLogger().debug(
                 `Creating k8s secret as ${secretName}`
             );
-            await this.kc.createNamespacedSecret(
-                this.kubeConfig.namespace,
-                {
+            await this.kc.createNamespacedSecret({
+                namespace: this.kubeConfig.namespace,
+                body: {
                     apiVersion: "v1",
                     kind: "Secret",
                     metadata: {
@@ -150,8 +154,8 @@ class K8sCredentialManager extends AbstractCredentialManager {
                         credentials: credentials,
                     },
                 },
-                "true"
-            );
+                pretty: "true",
+            });
             Logger.getImperativeLogger().debug(
                 `Successfully stored credentials as a kubernetes secret on namespace ${this.kubeConfig.namespace}`
             );
@@ -180,11 +184,11 @@ class K8sCredentialManager extends AbstractCredentialManager {
             Logger.getImperativeLogger().debug(
                 `Deleting k8s secret ${secretName}`
             );
-            await this.kc.deleteNamespacedSecret(
-                secretName,
-                this.kubeConfig.namespace,
-                "true"
-            );
+            await this.kc.deleteNamespacedSecret({
+                name: secretName,
+                namespace: this.kubeConfig.namespace,
+                pretty: "true",
+            });
         } catch (err) {
             throw new ImperativeError({
                 msg: `Failed to delete secret ${secretName} in namespace ${this.kubeConfig.namespace}`,
@@ -200,9 +204,9 @@ class K8sCredentialManager extends AbstractCredentialManager {
      *
      * @throws {@link ImperativeError} if kube config file was not able to be opened.
      */
-    private setupKubeConfig(): any {
+    private setupKubeConfig(): k8s.CoreV1Api {
         try {
-            const kc: any = new k8s.KubeConfig();
+            const kc: k8s.KubeConfig = new k8s.KubeConfig();
             kc.loadFromDefault();
 
             const currentContext = kc.getContextObject(kc.getCurrentContext());
@@ -240,7 +244,6 @@ class K8sCredentialManager extends AbstractCredentialManager {
                 namespace: k8sNamespace,
                 uid: uid,
             };
-
             return kc.makeApiClient(k8s.CoreV1Api);
         } catch (err) {
             throw new ImperativeError({
@@ -252,17 +255,16 @@ class K8sCredentialManager extends AbstractCredentialManager {
 
     /**
      * read a kubernetes secret from a specific namespace defined in kubeconfig
-     * @param {boolean} optional whether or not we need the value to be returned
-     * @throws {@link ImperativeError} if an error if secret was not found an optional was set to true
-     * @returns {Promise<any>} an object representing the kubernetes secret
+     * @throws ImperativeError if an error if secret was not found an optional was set to true
+     * @returns {Promise<k8s.V1Secret>} an object representing the kubernetes secret
      */
-    private async readNamespacedSecret(account: string): Promise<any> {
+    private async readNamespacedSecret(account: string): Promise<k8s.V1Secret> {
         try {
-            return await this.kc.readNamespacedSecret(
-                this.getSecretName(account),
-                this.kubeConfig.namespace,
-                "true"
-            );
+            return await this.kc.readNamespacedSecret({
+                name: this.getSecretName(account),
+                namespace: this.kubeConfig.namespace,
+                pretty: "true",
+            });
         } catch (err) {
             throw new ImperativeError({
                 msg: `${account}-${this.kubeConfig.uid} does not exist`,

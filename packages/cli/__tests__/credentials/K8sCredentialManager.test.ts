@@ -234,10 +234,8 @@ describe("K8sCredentialManager", () => {
                 ).toString();
                 privateManager.kc.readNamespacedSecret = jest.fn(() => {
                     return {
-                        body: {
-                            data: {
-                                credentials: values.credentials,
-                            },
+                        data: {
+                            credentials: values.credentials,
                         },
                     };
                 });
