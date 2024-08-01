@@ -2,9 +2,16 @@
 
 All notable changes to the Kubernetes Secrets Credential Manager Plug-in for Zowe CLI will be documented in this file.
 
-## `0.1.3`
+## TBD Release
 
 ### New features and enhancements
+
+- Renamed the VSCE to `Kubernetes Secrets for Zowe Explorer`. [#36](https://github.com/zowe/zowe-cli-secrets-for-kubernetes/issues/36)
+- Added LFX approved icons to the VSCE. [#35](https://github.com/zowe/zowe-cli-secrets-for-kubernetes/issues/35)
+
+### Bug fixes
+
+## `0.1.3`
 
 ### Bug fixes
 
