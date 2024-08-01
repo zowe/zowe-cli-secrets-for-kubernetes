@@ -11,6 +11,10 @@ src/
 tsconfig.json
 packages.json
 
+# Do not ignore images
+!resources/**/*.png
+!resources/**/*.svg
+
 # Ignore some specific files and directories in the parent directory
 .git
 .editorconfig
