@@ -4,7 +4,7 @@
     "description": "The Kubernetes Secrets for Zowe Explorer allows you to store your Zowe profile credentials as Kubernetes secrets.",
     "publisher": "Zowe",
     "author": "Zowe",
-    "version": "0.1.3",
+    "version": "0.2.0",
     "license": "EPL-2.0",
     "repository": "https://github.com/zowe/zowe-cli-secrets-for-kubernetes",
     "icon": "resources/k8s-vsce-icon.png",
