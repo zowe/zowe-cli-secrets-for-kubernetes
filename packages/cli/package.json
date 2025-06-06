@@ -63,8 +63,12 @@
             "<rootDir>/__tests__/__results__"
         ],
         "transform": {
-            ".(ts)": "ts-jest"
+            "^.+\\.ts$": "ts-jest",
+            "^.+\\.js$": "babel-jest"
         },
+        "transformIgnorePatterns": [
+            "/node_modules/(?!@kubernetes/client-node)/"
+        ],
         "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|js)$",
         "moduleFileExtensions": [
             "ts",
