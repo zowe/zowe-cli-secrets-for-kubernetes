@@ -50,7 +50,7 @@
         "@zowe/cli-test-utils": "^7.21.2"
     },
     "dependencies": {
-        "@kubernetes/client-node": "1.0.0-rc4"
+        "@kubernetes/client-node": "1.3.0"
     },
     "jest": {
         "setupFilesAfterEnv": [
