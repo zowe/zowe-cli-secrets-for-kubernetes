@@ -14,7 +14,6 @@ import { Constants } from "./Constants";
 
 const config: IImperativeConfig = {
     pluginSummary: Constants.PLUGIN_SUMMARY,
-    pluginHealthCheck: "./lib/imperative/healthCheckHandler",
     pluginLifeCycle: "./lib/imperative/pluginLifeCycle",
     pluginAliases: [Constants.ALIAS],
     rootCommandDescription: Constants.PLUGIN_DESCRIPTION,
