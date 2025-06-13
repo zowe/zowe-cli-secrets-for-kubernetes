@@ -84,7 +84,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: ${{ matrix.os }}-${{ matrix.node-version }}-results
-                  path: __tests__/__results__/
+                  path: packages/cli/__tests__/__results__/
 
             - name: Upload Results to Codecov
               if: ${{ always() && steps.build.outcome == 'success' }}
