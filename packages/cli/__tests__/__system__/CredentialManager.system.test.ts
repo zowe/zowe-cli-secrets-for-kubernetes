@@ -16,8 +16,8 @@ import {
 } from "@zowe/cli-test-utils";
 import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertiesSchema";
 
-import * as C from "../__src__/KeytarConstants";
-
+// import * as C from "../__src__/KeytarConstants";
+//
 // describe("Credential Manager Plugin for v1 profiles", () => {
 //     let TEST_ENV: ITestEnvironment<ITestPropertiesSchema>;
 
