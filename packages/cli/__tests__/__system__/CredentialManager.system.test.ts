@@ -16,37 +16,7 @@ import {
 } from "@zowe/cli-test-utils";
 import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertiesSchema";
 
-// import * as C from "../__src__/KeytarConstants";
-//
-// describe("Credential Manager Plugin for v1 profiles", () => {
-//     let TEST_ENV: ITestEnvironment<ITestPropertiesSchema>;
-
-//     // Create the unique test environment
-//     beforeAll(async () => {
-//         TEST_ENV = await TestEnvironment.setUp({
-//             installPlugin: true,
-//             tempProfileTypes: ["zosmf"],
-//             testName: "cm_tests",
-//             createOldProfiles: true,
-//         });
-//     });
-
-//     afterAll(async () => {
-//         await TestEnvironment.cleanUp(TEST_ENV);
-//     });
-
-//     it("should store credentials securely", () => {
-//         const response = runCliScript(
-//             __dirname + "/__scripts__/cm_create_v1.sh",
-//             TEST_ENV
-//         );
-//         expect(stripProfileDeprecationMessages(response.stderr)).toEqual("");
-//         expect(response.stdout.toString()).toContain(C.SIGNATURE);
-//         expect(response.status).toBe(0);
-//     });
-// });
-
-describe("Credential manager plugin for v2 profiles", () => {
+describe("Credential manager plugin for team configuration", () => {
     let TEST_ENV: ITestEnvironment<ITestPropertiesSchema>;
 
     // Create the unique test environment
@@ -64,7 +34,7 @@ describe("Credential manager plugin for v2 profiles", () => {
 
     it("should store credentials securely", () => {
         const response = runCliScript(
-            __dirname + "/__scripts__/cm_create_v2.sh",
+            __dirname + "/__scripts__/cm_create.sh",
             TEST_ENV
         );
         expect(response.stderr.toString()).toEqual("");
