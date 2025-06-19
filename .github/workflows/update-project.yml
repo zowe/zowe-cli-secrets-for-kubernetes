@@ -12,6 +12,9 @@ env:
   PR_STATUS_DRAFT: 'In Progress'
   PR_STATUS_READY: 'Review/QA'
 
+permissions:
+  pull-requests: write
+
 jobs:
   update-project:
     name: Move project item
@@ -28,6 +31,6 @@ jobs:
       if: ${{ github.event.pull_request }}
       with:
         assign-author: true
-        item-status: ${{ github.event.action == 'ready_for_review' && env.PR_STATUS_READY || env.PR_STATUS_DRAFT }}
+        item-status: ${{ github.event.pull_request.draft && env.PR_STATUS_DRAFT || env.PR_STATUS_READY }}
         project-number: ${{ env.PROJECT_NUMBER }}
         project-token: ${{ secrets.ZOWE_ROBOT_TOKEN }}

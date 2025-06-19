@@ -2,6 +2,9 @@
 
 All notable changes to the Kubernetes Secrets Credential Manager Plug-in for Zowe CLI will be documented in this file.
 
+## TBD Release
+
+- Added support for Zowe V3 and updated dependencies for technical currency. [#46](https://github.com/zowe/zowe-cli-secrets-for-kubernetes/pull/46)
 
 ## `0.2.0`
 
