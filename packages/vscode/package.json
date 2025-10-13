@@ -18,6 +18,9 @@
     "engines": {
         "vscode": "^1.63.2"
     },
+    "extensionDependencies": [
+        "Zowe.vscode-extension-for-zowe"
+    ],
     "scripts": {
         "build": "tsup",
         "dev": "npm run build -- --watch",
