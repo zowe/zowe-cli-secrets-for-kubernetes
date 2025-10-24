@@ -2,6 +2,10 @@
 
 All notable changes to the Kubernetes Secrets Credential Manager Plug-in for Zowe CLI will be documented in this file.
 
+## `0.4.0`
+
+- Renamed the VSCE to `Zowe Explorer for Kubernetes Secrets`. [#55](https://github.com/zowe/zowe-cli-secrets-for-kubernetes/pull/55)
+
 ## `0.3.0`
 
 - Added support for Zowe V3 and updated dependencies for technical currency. [#46](https://github.com/zowe/zowe-cli-secrets-for-kubernetes/pull/46)
