@@ -2,7 +2,7 @@
 
 ## Installing
 
-Use one of the following methods to install the Zowe® CLI Plug-in for Kubernetes Secrets:
+Use one of the following methods to install the Zowe® CLI Plug-in for Kubernetes® Secrets:
 
 - Install the plug-in to Zowe CLI from an online registry or a local package.
 
