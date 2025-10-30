@@ -1,14 +1,14 @@
-# Kubernetes Secrets for Zowe Explorer
+# Zowe Explorer for Kubernetes Secrets
 
 ## Installing
 
-Use one of the following methods to install the plug-in:
+Use one of the following methods to install Zowe® Explorer for Kubernetes® Secrets:
 
 - Install the plug-in to VS Code from the marketplace
 
   1. On the left most side of the VS Code window in your workspace, click on the **Extensions** icon.
 
-  1. On top of the **Extensions** view, click on the **Search bar** and search for `Kubernetes Secrets for Zowe Explorer`.
+  1. On top of the **Extensions** view, click on the **Search bar** and search for `Zowe Explorer for Kubernetes Secrets`.
 
   1. Click on the **Install** button.
 
@@ -38,7 +38,7 @@ To uninstall the plug-in, perform the following steps:
 
 1. On the left most side of the VS Code window in your workspace, click on the extensions icon.
 
-1. On top of the extensions view, click on the search bar and search for `Kubernetes Secrets for Zowe Explorer`.
+1. On top of the extensions view, click on the search bar and search for `Zowe Explorer for Kubernetes Secrets`.
 
 1. click uninstall.
 

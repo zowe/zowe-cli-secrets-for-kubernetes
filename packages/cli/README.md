@@ -1,8 +1,8 @@
-# Kubernetes Secrets for Zowe CLI
+# Zowe CLI Plug-in for Kubernetes Secrets
 
 ## Installing
 
-Use one of the following methods to install the plug-in:
+Use one of the following methods to install the Zowe® CLI Plug-in for Kubernetes® Secrets:
 
 - Install the plug-in to Zowe CLI from an online registry or a local package.
 
@@ -20,7 +20,7 @@ Use one of the following methods to install the plug-in:
 
 Follow these steps:
 
-1. The first time that you clone the Kubernetes credenital manager plug-in for Zowe CLI from the GitHub repository, issue the following command against the local directory:
+1. The first time that you clone the Kubernetes credential manager plug-in for Zowe CLI from the GitHub repository, issue the following command against the local directory:
 
    ```bash
    npm install
