@@ -28,10 +28,10 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -47,7 +47,7 @@ jobs:
 
             - name: Update Dependencies
               id: npm-update
-              uses: zowe-actions/octorelease/script@v1
+              uses: zowe-actions/octorelease/script@e0672bf28f74f36219713afe75915ea2dc7bf85b # v1
               with:
                   script: npmUpdate
 
@@ -62,7 +62,7 @@ jobs:
             - name: Start K3s Cluster
               id: k3s
               if: ${{ always() && steps.build.outcome == 'success' && matrix.os == 'ubuntu-latest' }}
-              uses: nolar/setup-k3d-k3s@v1
+              uses: nolar/setup-k3d-k3s@62c9d1bd2bc843275c85d2e7dcd696edc1160eee # v1
 
             - name: Set K8s Namespace
               if: ${{ always() && steps.k3s.outcome == 'success' }}
@@ -83,14 +83,14 @@ jobs:
 
             - name: Archive Results
               if: ${{ always() && steps.build.outcome == 'success' }}
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # v3
               with:
                   name: ${{ matrix.os }}-${{ matrix.node-version }}-results
                   path: __tests__/__results__/
 
             - name: Upload Results to Codecov
               if: ${{ always() && steps.build.outcome == 'success' }}
-              uses: codecov/codecov-action@v3
+              uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
               with:
                   env_vars: OS,NODE
 
@@ -101,14 +101,14 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
               with:
                   fetch-depth: 0
                   persist-credentials: false
                   ref: ${{ github.ref }}
 
             - name: Use Node.js LTS
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
               with:
                   node-version: "lts/*"
 
@@ -119,7 +119,7 @@ jobs:
               run: npm install -g lerna@6
 
             - name: Update Dependencies
-              uses: zowe-actions/octorelease/script@v1
+              uses: zowe-actions/octorelease/script@e0672bf28f74f36219713afe75915ea2dc7bf85b # v1
               env:
                   GIT_COMMITTER_NAME: ${{ secrets.ZOWE_ROBOT_USER }}
                   GIT_COMMITTER_EMAIL: ${{ secrets.ZOWE_ROBOT_EMAIL }}
@@ -130,7 +130,7 @@ jobs:
             - name: Build Source
               run: npm run build
 
-            - uses: zowe-actions/octorelease@v1
+            - uses: zowe-actions/octorelease@e0672bf28f74f36219713afe75915ea2dc7bf85b # v1
               env:
                   GIT_COMMITTER_NAME: ${{ secrets.ZOWE_ROBOT_USER }}
                   GIT_COMMITTER_EMAIL: ${{ secrets.ZOWE_ROBOT_EMAIL }}
