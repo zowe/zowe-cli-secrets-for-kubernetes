@@ -43,10 +43,10 @@
         "package": "npm run clean && node ../../scripts/updateLicenses.js && npm run build && npm pack --pack-destination ../../dist"
     },
     "peerDependencies": {
-        "@zowe/imperative": "^5.20.1"
+        "@zowe/imperative": "^5.27.16"
     },
     "devDependencies": {
-        "@zowe/cli": "^7.21.3",
+        "@zowe/cli": "^7.29.25",
         "@zowe/cli-test-utils": "^7.21.2"
     },
     "dependencies": {

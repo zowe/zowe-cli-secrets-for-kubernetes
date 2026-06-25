@@ -13,7 +13,6 @@ import {
     ITestEnvironment,
     TestEnvironment,
     runCliScript,
-    stripProfileDeprecationMessages,
 } from "@zowe/cli-test-utils";
 import { ITestPropertiesSchema } from "../__src__/environment/doc/ITestPropertiesSchema";
 
@@ -26,9 +25,7 @@ describe("Credential Manager Plugin for v1 profiles", () => {
     beforeAll(async () => {
         TEST_ENV = await TestEnvironment.setUp({
             installPlugin: true,
-            tempProfileTypes: ["zosmf"],
             testName: "cm_tests",
-            createOldProfiles: true,
         });
     });
 
@@ -41,7 +38,12 @@ describe("Credential Manager Plugin for v1 profiles", () => {
             __dirname + "/__scripts__/cm_create_v1.sh",
             TEST_ENV
         );
-        expect(stripProfileDeprecationMessages(response.stderr)).toEqual("");
+        const unexpectedStderr = response.stderr.toString()
+            .replace(/Warning: The command 'profiles [\w ]+' is deprecated\.\s*/g, "")
+            .replace(/Recommended replacement: The 'config \w+' command\s*/g, "")
+            .replace(/Recommended replacement: Edit your Zowe V2 configuration\s+zowe\.config\.json\s*/g, "")
+            .trim();
+        expect(unexpectedStderr).toEqual("");
         expect(response.stdout.toString()).toContain(C.SIGNATURE);
         expect(response.status).toBe(0);
     });
