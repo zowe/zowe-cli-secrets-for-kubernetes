@@ -26,9 +26,7 @@ describe("Credential Manager Plugin for v1 profiles", () => {
     beforeAll(async () => {
         TEST_ENV = await TestEnvironment.setUp({
             installPlugin: true,
-            tempProfileTypes: ["zosmf"],
             testName: "cm_tests",
-            createOldProfiles: true,
         });
     });
 
